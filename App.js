@@ -1,3 +1,6 @@
+require('react-devtools-core').connectToDevTools({
+  port: 19001
+});
 import React from 'react'
 import {Platform, StatusBar, StyleSheet, View} from 'react-native'
 import {AppLoading, Asset, Font} from 'expo'
@@ -5,14 +8,27 @@ import {Ionicons} from '@expo/vector-icons'
 import RootNavigation from './navigation/RootNavigation'
 import {ApolloProvider} from 'react-apollo'
 import ApolloClient, {createNetworkInterface} from 'apollo-client'
-import {GRAPHQL_SIMPLE_API_URL} from 'react-native-dotenv'
+import {addGraphQLSubscriptions, SubscriptionClient} from 'subscriptions-transport-ws'
+import {GRAPHQL_SIMPLE_API_URL, WEB_SOCKET_CLIENT_URL} from 'react-native-dotenv'
 import PostList from './PostList';
 
 console.log(GRAPHQL_SIMPLE_API_URL);
+console.log(WEB_SOCKET_CLIENT_URL );
+
+const networkInterface = createNetworkInterface({uri: GRAPHQL_SIMPLE_API_URL});
+// Create WebSocket client
+const wsClient = new SubscriptionClient(WEB_SOCKET_CLIENT_URL, {
+  reconnect: true,
+});
+// Extend the network interface with the WebSocket
+const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
+  networkInterface,
+  wsClient
+);
+
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface({
-    uri: GRAPHQL_SIMPLE_API_URL,
-  })
+  networkInterface: networkInterfaceWithSubscriptions,
+  dataIdFromObject: o => o.id
 });
 
 export default class App extends React.Component {
@@ -29,24 +45,23 @@ export default class App extends React.Component {
   };
 
 
-
   render() {
     if (!this.state.assetsAreLoaded && !this.props.skipLoadingScreen) {
       return <AppLoading/>;
     } else {
       return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
-          {Platform.OS === 'android' &&
-          <View style={styles.statusBarUnderlay}/>}
+        <ApolloProvider client={client}>
+          <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
+            {Platform.OS === 'android' &&
+            <View style={styles.statusBarUnderlay}/>}
 
-          <RootNavigation/>
-          <View>
-            <ApolloProvider client={client}>
-                <PostList/>
-            </ApolloProvider>
+            <RootNavigation/>
+            <View>
+              <PostList/>
+            </View>
           </View>
-        </View>
+        </ApolloProvider>
       );
     }
   }
