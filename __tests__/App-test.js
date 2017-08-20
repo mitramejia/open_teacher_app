@@ -8,7 +8,6 @@ import _ from 'lodash';
 import Shallow from 'react-test-renderer/shallow';
 import strings from '../constants/strings/screens/ProfileScreen-strings';
 
-
 it('renders the loading screen', async () => {
   const tree = renderer.create(<App/>).toJSON();
   expect(tree).toMatchSnapshot();
@@ -42,4 +41,3 @@ it('renders a profile heading', () => {
   const tree = renderer.create(<ProfileScreen/>).toJSON();
   expect(tree).toMatchSnapshot();
 });
-
