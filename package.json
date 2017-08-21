@@ -8,10 +8,14 @@
   "scripts": {
     "test": "node ./node_modules/jest/bin/jest.js --watch --coverage",
     "test:update": "node ./node_modules/jest/bin/jest.js -u",
+    "lint":"",
     "devtools": "react-devtools"
   },
   "jest": {
     "preset": "jest-expo"
+  },
+  "eslintConfig": {
+    "extends": "expo"
   },
   "dependencies": {
     "@expo/samples": "^2.0.2",
@@ -30,6 +34,7 @@
   "devDependencies": {
     "babel-preset-react-native": "1.9.2",
     "eslint": "^4.5.0",
+    "eslint-config-expo": "^6.0.0",
     "jest-expo": "^20.0.0",
     "prettier": "^1.5.3",
     "react-devtools": "^2.5.0",
