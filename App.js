@@ -1,19 +1,22 @@
+
 require('react-devtools-core').connectToDevTools({
-  port: 19001
+  port: 19001,
 });
-import React from 'react'
-import {Platform, StatusBar, StyleSheet, View} from 'react-native'
-import {AppLoading, Asset, Font} from 'expo'
-import {Ionicons} from '@expo/vector-icons'
-import RootNavigation from './navigation/RootNavigation'
-import {ApolloProvider} from 'react-apollo'
-import ApolloClient, {createNetworkInterface} from 'apollo-client'
-import {addGraphQLSubscriptions, SubscriptionClient} from 'subscriptions-transport-ws'
-import {GRAPHQL_SIMPLE_API_URL, WEB_SOCKET_CLIENT_URL} from 'react-native-dotenv'
-import PostList from './PostList';
+import React from 'react';
+import RootNavigation from './navigation/RootNavigation';
+import LoginScreen from "./screens/Login/Login";
+import {AppLoading, Asset, Font} from 'expo';
+import {Platform, StatusBar, StyleSheet, View} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
+import {ApolloProvider} from 'react-apollo';
+import ApolloClient, {createNetworkInterface} from 'apollo-client';
+import {addGraphQLSubscriptions, SubscriptionClient} from 'subscriptions-transport-ws';
+import {GRAPHQL_SIMPLE_API_URL, WEB_SOCKET_CLIENT_URL} from 'react-native-dotenv';
+import {Button, Container, Content, Header} from 'native-base';
+
 
 console.log(GRAPHQL_SIMPLE_API_URL);
-console.log(WEB_SOCKET_CLIENT_URL );
+console.log(WEB_SOCKET_CLIENT_URL);
 
 const networkInterface = createNetworkInterface({uri: GRAPHQL_SIMPLE_API_URL});
 // Create WebSocket client
@@ -21,14 +24,11 @@ const wsClient = new SubscriptionClient(WEB_SOCKET_CLIENT_URL, {
   reconnect: true,
 });
 // Extend the network interface with the WebSocket
-const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
-  networkInterface,
-  wsClient
-);
+const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(networkInterface, wsClient);
 
 const client = new ApolloClient({
   networkInterface: networkInterfaceWithSubscriptions,
-  dataIdFromObject: o => o.id
+  dataIdFromObject: o => o.id,
 });
 
 export default class App extends React.Component {
@@ -38,12 +38,7 @@ export default class App extends React.Component {
 
   constructor(...args) {
     super(...args);
-  };
-
-  componentWillMount() {
-    this._loadAssetsAsync();
-  };
-
+  }
 
   render() {
     if (!this.state.assetsAreLoaded && !this.props.skipLoadingScreen) {
@@ -51,21 +46,22 @@ export default class App extends React.Component {
     } else {
       return (
         <ApolloProvider client={client}>
-          <View style={styles.container}>
-            {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
-            {Platform.OS === 'android' &&
-            <View style={styles.statusBarUnderlay}/>}
-
-            <RootNavigation/>
-            <View>
-              <PostList/>
+          <Container>
+            <View style={styles.container}>
+              {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
+              {Platform.OS === 'android' && <View style={styles.statusBarUnderlay}/>}
+              <LoginScreen/>
+              {/*<RootNavigation/>*/}
             </View>
-          </View>
+          </Container>
         </ApolloProvider>
       );
     }
   }
 
+  async componentWillMount() {
+    this._loadAssetsAsync();
+  }
 
   async _loadAssetsAsync() {
     try {
@@ -77,9 +73,9 @@ export default class App extends React.Component {
         Font.loadAsync([
           // This is the font that we are using for our tab bar
           Ionicons.font,
-          // We include SpaceMono because we use it in HomeScreen.js. Feel free
-          // to remove this if you are not using it in your app
-          {'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf')},
+          {'Roboto': require('native-base/Fonts/Roboto.ttf')},
+          {'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf')},
+          {'Roboto_bold': require('./assets/fonts/Roboto-Bold.ttf')},
         ]),
       ]);
     } catch (e) {
