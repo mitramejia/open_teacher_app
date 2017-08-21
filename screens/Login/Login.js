@@ -1,9 +1,8 @@
 import React from 'react';
 import { Alert, Image, View } from 'react-native';
-import {Facebook} from 'expo';
+import { Facebook } from 'expo';
 import { FACEBOOK_APP_ID } from 'react-native-dotenv';
 import { Button, Container, Content, Icon, Header, Text } from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
 import strings from './Strings';
 import styles from './StyleSheet';
 
