@@ -1,10 +1,18 @@
-import React from 'react'
-import {Alert, Button, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {Facebook, WebBrowser} from 'expo'
-import {FACEBOOK_APP_ID} from 'react-native-dotenv'
-import strings from '../constants/strings/screens/HomeScreen-strings'
-import {MonoText} from '../components/StyledText'
-
+import React from 'react';
+import {
+  Alert,
+  Button,
+  Image,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { Facebook, WebBrowser } from 'expo';
+import { FACEBOOK_APP_ID } from 'react-native-dotenv';
+import strings from '../constants/strings/screens/HomeScreen-strings';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -14,15 +22,11 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}>
-          <Text style={styles.getStartedText}>{strings.heading}</Text>
-          <Button
-            title="Login with Facebook"
-            onPress={this._logIn}
-          />
-
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+          <Text style={styles.getStartedText}>
+            {strings.heading}
+          </Text>
+          <Button title="Login with Facebook" onPress={this._logIn} />
 
           <View style={styles.welcomeContainer}>
             <Image
@@ -38,39 +42,23 @@ export default class HomeScreen extends React.Component {
           <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
 
-            <View
-              style={[
-                styles.codeHighlightContainer,
-                styles.homeScreenFilename,
-              ]}>
-              <MonoText style={styles.codeHighlightText}>
-                screens/HomeScreen.js
-              </MonoText>
+            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
+              <Text style={styles.codeHighlightText}>screens/HomeScreen.js</Text>
             </View>
-
           </View>
 
           <View style={styles.helpContainer}>
-            <TouchableOpacity
-              onPress={this._handleHelpPress}
-              style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>
-                Help, it didn’t automatically reload!
-              </Text>
+            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
+              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
 
         <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>
-            This is a tab bar. You can edit it in:
-          </Text>
+          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
-          <View
-            style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>
-              navigation/MainTabNavigator.js
-            </MonoText>
+          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
+            <Text style={styles.codeHighlightText}>navigation/MainTabNavigator.js</Text>
           </View>
         </View>
       </View>
@@ -78,17 +66,13 @@ export default class HomeScreen extends React.Component {
   }
 
   async _logIn() {
-    const {type, token} = await Facebook.logInWithReadPermissionsAsync(FACEBOOK_APP_ID, {
+    const { type, token } = await Facebook.logInWithReadPermissionsAsync(FACEBOOK_APP_ID, {
       permissions: ['public_profile'],
     });
     if (type === 'success') {
       // Get the user's name using Facebook's Graph API
-      const response = await fetch(
-        `https://graph.facebook.com/me?access_token=${token}`);
-      Alert.alert(
-        'Logged in!',
-        `Hi ${(await response.json()).name}!`,
-      );
+      const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+      Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
     }
   }
 
@@ -102,8 +86,8 @@ export default class HomeScreen extends React.Component {
 
       return (
         <Text style={styles.developmentModeText}>
-          Development mode is enabled your app will be slower but you can use
-          useful development tools. {learnMoreButton}
+          Development mode is enabled your app will be slower but you can use useful development
+          tools. {learnMoreButton}
         </Text>
       );
     } else {
@@ -116,9 +100,7 @@ export default class HomeScreen extends React.Component {
   }
 
   _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/development-mode'
-    );
+    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
   };
 
   _handleHelpPress = () => {
@@ -184,7 +166,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: 'black',
-        shadowOffset: {height: -3},
+        shadowOffset: { height: -3 },
         shadowOpacity: 0.1,
         shadowRadius: 3,
       },
