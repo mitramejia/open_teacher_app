@@ -8,7 +8,6 @@
   "scripts": {
     "test": "node ./node_modules/jest/bin/jest.js --watch --coverage",
     "test:update": "node ./node_modules/jest/bin/jest.js -u",
-    "lint": "",
     "devtools": "react-devtools"
   },
   "jest": {
