@@ -4,11 +4,21 @@ import { StackNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
+import StudentHomeScreen from "../screens/Student/Home/StudentHomeScreen";
+import LoginScreen from "../screens/Login/LoginScreen";
 
+
+// ==================================================================================
+// Global Navigation Configuration
+// See: https://reactnavigation.org/docs/intro/
+// ==================================================================================
 const RootStackNavigator = StackNavigator(
   {
-    Main: {
-      screen: MainTabNavigator,
+    Login: {
+      screen: LoginScreen,
+    },
+    StudentHome: {
+      screen: StudentHomeScreen,
     },
   },
   {
@@ -20,6 +30,10 @@ const RootStackNavigator = StackNavigator(
   }
 );
 
+// ==================================================================================
+// RootNavigator Component defined to handle push notifications and render
+// the RootStackNavigator component
+// ==================================================================================
 export default class RootNavigator extends React.Component {
   componentDidMount() {
     this._notificationSubscription = this._registerForPushNotifications();
@@ -41,14 +55,10 @@ export default class RootNavigator extends React.Component {
     registerForPushNotificationsAsync();
 
     // Watch for incoming notifications
-    this._notificationSubscription = Notifications.addListener(
-      this._handleNotification
-    );
+    this._notificationSubscription = Notifications.addListener(this._handleNotification);
   }
 
   _handleNotification = ({ origin, data }) => {
-    console.log(
-      `Push notification ${origin} with data: ${JSON.stringify(data)}`
-    );
+    console.log(`Push notification ${origin} with data: ${JSON.stringify(data)}`);
   };
 }
