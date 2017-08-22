@@ -2,9 +2,9 @@ require('react-devtools-core').connectToDevTools({
   port: 19001,
 });
 import React from 'react';
-import Login from './screens/Login/Login';
-import client from './graphql/GraphcoolConnection';
-import strings from './constants/strings/global';
+import Login from './screens/Login/LoginScreen';
+import client from './api/graphql/GraphcoolConnection';
+import strings from './config/setting';
 import { AppLoading, Asset, Font } from 'expo';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { ApolloProvider } from 'react-apollo';

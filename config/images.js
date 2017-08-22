@@ -1,13 +1,13 @@
 // =============================================================
 //
-// Name: settings
-// -> Description:
+// Name: images
+// -> Description: 
 //
-// Author: mitramejia
-// Created at: 8/5/17
+// Author: mitramejia 
+// Created at: 8/21/17
 //
 // =============================================================
 
 export default {
-  heading: "Open Teacher"
+  logo: require('../assets/images/logo.png'),
 }
