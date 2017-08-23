@@ -1,20 +1,18 @@
-require('react-devtools-core').connectToDevTools({
-  port: 19001,
-});
 import React from 'react';
-import Login from './screens/Login/LoginScreen';
-import client from './api/graphql/GraphcoolConnection';
-import strings from './config/setting';
 import { AppLoading, Asset, Font } from 'expo';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
 import { Container } from 'native-base';
+import client from './api/graphql/GraphcoolConnection';
+import strings from './config/setting';
+import RootNavigator from './navigation/RootNavigation';
 
 export default class App extends React.Component {
   constructor(...args) {
     super(...args);
     this.state = {
       assetsAreLoaded: false,
+      userIsLoggedIn: false,
     };
   }
 
@@ -26,7 +24,9 @@ export default class App extends React.Component {
         <Container>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-          <ApolloProvider client={client} children={<Login />} />
+          <ApolloProvider client={client}>
+            <RootNavigator />
+          </ApolloProvider>
         </Container>
       );
     }
@@ -58,7 +58,7 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   statusBarUnderlay: {
-    height: 24,
+    height: 34,
     backgroundColor: 'rgba(0,0,0,0.2)',
   },
 });

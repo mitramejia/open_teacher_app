@@ -1,12 +1,11 @@
-import { Notifications } from 'expo';
 import React from 'react';
+import { Notifications } from 'expo';
 import { StackNavigator } from 'react-navigation';
-
-import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
-import StudentHomeScreen from "../screens/Student/Home/StudentHomeScreen";
-import LoginScreen from "../screens/Login/LoginScreen";
-
+import StudentHomeScreen from '../screens/Student/Home/StudentHomeScreen';
+import LoginScreen from '../screens/Login/LoginScreen';
+import HomeScreen from "../screens/Home/HomeScreen";
+import CreateAccount from "../screens/CreateAccount/CreateAccount";
 
 // ==================================================================================
 // Global Navigation Configuration
@@ -14,8 +13,14 @@ import LoginScreen from "../screens/Login/LoginScreen";
 // ==================================================================================
 const RootStackNavigator = StackNavigator(
   {
+    Home: {
+      screen: HomeScreen,
+    },
     Login: {
       screen: LoginScreen,
+    },
+    CreateAccount: {
+      screen: CreateAccount,
     },
     StudentHome: {
       screen: StudentHomeScreen,
