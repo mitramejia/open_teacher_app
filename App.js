@@ -3,9 +3,9 @@ import { AppLoading, Asset, Font } from 'expo';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
 import { Container } from 'native-base';
-import client from './api/graphql/GraphcoolConnection';
-import strings from './config/setting';
-import RootNavigator from './navigation/RootNavigation';
+import client from './src/api/graphql/GraphcoolConnection';
+import strings from './src/config/setting';
+import RootNavigator from './src/navigation/RootNavigation';
 
 export default class App extends React.Component {
   constructor(...args) {
