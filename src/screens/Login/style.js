@@ -8,7 +8,7 @@
 //
 // =============================================================
 import { StyleSheet } from 'react-native';
-import colors from '../../constants/Colors';
+import { colors } from '../../config/style';
 
 export default StyleSheet.create({
   container: {
@@ -30,7 +30,6 @@ export default StyleSheet.create({
     alignContent: 'center',
     marginTop: 3,
   },
-
   isTutorLink: {
     textDecorationLine: `underline`,
     marginTop: 40,

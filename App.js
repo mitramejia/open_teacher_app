@@ -1,20 +1,21 @@
-require('react-devtools-core').connectToDevTools({
-  port: 19001,
-});
 import React from 'react';
-import Login from './screens/Login/Login';
-import client from './graphql/GraphcoolConnection';
-import strings from './constants/strings/global';
 import { AppLoading, Asset, Font } from 'expo';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
 import { Container } from 'native-base';
+import client from './src/api/graphql/GraphcoolConnection';
+import strings from './src/config/setting';
+import fonts from './src/config/fonts';
+import { style } from "./src/config/style";
+import RootNavigator from './src/navigation/RootNavigation';
+import images from './src/config/images';
 
 export default class App extends React.Component {
   constructor(...args) {
     super(...args);
     this.state = {
       assetsAreLoaded: false,
+      userIsLoggedIn: false,
     };
   }
 
@@ -25,8 +26,10 @@ export default class App extends React.Component {
       return (
         <Container>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-          <ApolloProvider client={client} children={<Login />} />
+          {Platform.OS === 'android' && <View style={style.statusBarUnderlay} />}
+          <ApolloProvider client={client}>
+            <RootNavigator />
+          </ApolloProvider>
         </Container>
       );
     }
@@ -39,12 +42,12 @@ export default class App extends React.Component {
   async _loadAssets() {
     try {
       await Promise.all([
-        Asset.loadAsync([require('./assets/images/logo.png')]),
+        Asset.loadAsync([images.logo]),
         Font.loadAsync([
           // This is the font that we are using for our tab bar
-          { Roboto: require('./assets/fonts/Roboto-Regular.ttf') },
-          { Roboto_medium: require('./assets/fonts/Roboto-Medium.ttf') },
-          { Roboto_bold: require('./assets/fonts/Roboto-Bold.ttf') },
+          { RobotoRegular: fonts.robotoRegular },
+          { RobotoMedium: fonts.robotoMedium },
+          { RobotoBold: fonts.robotoBold },
         ]),
       ]);
     } catch (error) {
@@ -58,7 +61,7 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   statusBarUnderlay: {
-    height: 24,
+    height: 34,
     backgroundColor: 'rgba(0,0,0,0.2)',
   },
 });

@@ -1,4 +1,4 @@
-import Login from '../screens/Login/Login';
+import Login from '../screens/Login/LoginScreen';
 import 'react-native';
 import React from 'react';
 import renderer from 'react-test-renderer';
