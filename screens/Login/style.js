@@ -30,7 +30,6 @@ export default StyleSheet.create({
     alignContent: 'center',
     marginTop: 3,
   },
-
   isTutorLink: {
     textDecorationLine: `underline`,
     marginTop: 40,

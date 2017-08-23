@@ -10,8 +10,8 @@
 
 import { StyleSheet } from 'react-native';
 
-export default new StyleSheet({
+export default StyleSheet.create({
   container: {
-    backgroundColor: '#eee',
+    backgroundColor: '#eeeeee',
   },
 });
