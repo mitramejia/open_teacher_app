@@ -8,12 +8,20 @@
   "scripts": {
     "test": "node ./node_modules/jest/bin/jest.js --watch",
     "test:update": "node ./node_modules/jest/bin/jest.js -u",
+    "flow": "node_modules/.bin/flow --quiet",
+    "flow:stop": "node_modules/.bin/flow stop",
+    "flow:watch": "node_modules/.bin/flow-watch",
     "devtools": "react-devtools"
   },
   "jest": {
     "preset": "jest-expo",
-    "moduleFileExtensions": ["js", "jsx"],
-    "moduleDirectories": ["node_modules"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
     "moduleNameMapper": {
       "^js(.*)$": "<rootDir>/graphql/$1",
       "^constants(.*)$": "<rootDir>/constants/$1",
@@ -21,7 +29,6 @@
     },
     "transformIgnorePatterns": [
       "node_modules/(?!react-native|expo|react-navigation|native-base-shoutem-theme|@shoutem/theme|@shoutem/animation|@shoutem/ui|tcomb-form-native)"
-
     ]
   },
   "eslintConfig": {
@@ -31,7 +38,6 @@
     "@expo/vector-icons": "^5.1.0",
     "apollo-client": "^1.9.1",
     "expo": "^20.0.0",
-    "faker": "^4.1.0",
     "graphql-tag": "^2.4.2",
     "lodash": "^4.17.4",
     "native-base": "^2.3.1",
@@ -44,9 +50,13 @@
     "subscriptions-transport-ws": "^0.8.2"
   },
   "devDependencies": {
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react-native": "1.9.2",
     "eslint": "^4.5.0",
     "eslint-config-expo": "^6.0.0",
+    "faker": "^4.1.0",
+    "flow-bin": "^0.53.1",
+    "flow-watch": "^1.1.1",
     "jest-expo": "^20.0.0",
     "prettier": "^1.5.3",
     "react-devtools": "^2.5.0",
