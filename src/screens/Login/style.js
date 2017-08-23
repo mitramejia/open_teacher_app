@@ -8,7 +8,7 @@
 //
 // =============================================================
 import { StyleSheet } from 'react-native';
-import { Colors } from '../../config/style';
+import { colors } from '../../config/style';
 
 export default StyleSheet.create({
   container: {
@@ -17,7 +17,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   facebookButton: {
-    backgroundColor: Colors.primary,
+    backgroundColor: colors.primary,
     marginBottom: 20,
   },
   createAccountButton: {
@@ -33,6 +33,6 @@ export default StyleSheet.create({
   isTutorLink: {
     textDecorationLine: `underline`,
     marginTop: 40,
-    color: Colors.primary,
+    color: colors.primary,
   },
 });

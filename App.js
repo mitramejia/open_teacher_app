@@ -6,8 +6,9 @@ import { Container } from 'native-base';
 import client from './src/api/graphql/GraphcoolConnection';
 import strings from './src/config/setting';
 import fonts from './src/config/fonts';
+import { style } from "./src/config/style";
 import RootNavigator from './src/navigation/RootNavigation';
-import images from "./src/config/images";
+import images from './src/config/images';
 
 export default class App extends React.Component {
   constructor(...args) {
@@ -25,7 +26,7 @@ export default class App extends React.Component {
       return (
         <Container>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
+          {Platform.OS === 'android' && <View style={style.statusBarUnderlay} />}
           <ApolloProvider client={client}>
             <RootNavigator />
           </ApolloProvider>
