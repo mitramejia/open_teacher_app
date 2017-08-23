@@ -5,7 +5,9 @@ import { ApolloProvider } from 'react-apollo';
 import { Container } from 'native-base';
 import client from './src/api/graphql/GraphcoolConnection';
 import strings from './src/config/setting';
+import fonts from './src/config/fonts';
 import RootNavigator from './src/navigation/RootNavigation';
+import images from "./src/config/images";
 
 export default class App extends React.Component {
   constructor(...args) {
@@ -39,12 +41,12 @@ export default class App extends React.Component {
   async _loadAssets() {
     try {
       await Promise.all([
-        Asset.loadAsync([require('./assets/images/logo.png')]),
+        Asset.loadAsync([images.logo]),
         Font.loadAsync([
           // This is the font that we are using for our tab bar
-          { Roboto: require('./assets/fonts/Roboto-Regular.ttf') },
-          { Roboto_medium: require('./assets/fonts/Roboto-Medium.ttf') },
-          { Roboto_bold: require('./assets/fonts/Roboto-Bold.ttf') },
+          { RobotoRegular: fonts.robotoRegular },
+          { RobotoMedium: fonts.robotoMedium },
+          { RobotoBold: fonts.robotoBold },
         ]),
       ]);
     } catch (error) {
