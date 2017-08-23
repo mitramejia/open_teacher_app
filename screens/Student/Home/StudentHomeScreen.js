@@ -9,12 +9,11 @@
 // =============================================================
 
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
 import { Content, Text } from 'native-base';
-import strings from './Strings';
-import styles from './StyleSheet';
+import strings from './strings';
+import style from './style';
 
-class StudentHomeScreen extends React.Component {
+export default class StudentHomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -22,12 +21,11 @@ class StudentHomeScreen extends React.Component {
 
   static navigationOptions = {
     title: 'StudentHomeScreen',
-    header: null,
   };
 
   render() {
     return (
-      <Content contentContainerStyle={styles.container}>
+      <Content contentContainerStyle={style.container}>
         <Text>
           {strings.test}
         </Text>
@@ -35,10 +33,3 @@ class StudentHomeScreen extends React.Component {
     );
   }
 }
-
-// Export to Navigation
-export default StackNavigator({
-  StudentHomeScreen: {
-    screen: StudentHomeScreen,
-  },
-});
