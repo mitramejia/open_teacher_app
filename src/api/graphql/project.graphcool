@@ -1,5 +1,5 @@
 # project: cj5zswpmnfr6201049umywa1m
-# version: 2
+# version: 40
 
 type Post implements Node {
   description: String!
@@ -20,8 +20,54 @@ type File implements Node {
   url: String! @isUnique
 }
 
-type User implements Node {
+type Tutor implements Node {
   createdAt: DateTime!
   id: ID! @isUnique
+  updatedAt: DateTime!
+  students: [Student!]! @relation(name: "TutorOnStudent")
+  description: String
+  diplomaUrl: String!
+  lessons: [Lesson!]! @relation(name: "TutorOnLesson")
+  locations: [String!]!
+  subjects: [Subject!]! @relation(name: "SubjectOnTutor")
+}
+
+type User implements Node {
+  createdAt: DateTime!
+  birthdate: DateTime!
+  firstName: String!
+  imageUrl: String!
+  lastName: String!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+  email: String @isUnique
+  password: String
+}
+
+type Lesson implements Node {
+  cost: Float!
+  createdAt: DateTime!
+  duration: Int!
+  id: ID! @isUnique
+  student: Student @relation(name: "StudentOnLesson")
+  updatedAt: DateTime!
+  user: Tutor @relation(name: "TutorOnLesson")
+}
+
+type Student implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  lessons: [Lesson!]! @relation(name: "StudentOnLesson")
+  subjects: [Subject!]! @relation(name: "SubjectOnStudent")
+  tutor: Tutor @relation(name: "TutorOnStudent")
+  updatedAt: DateTime!
+}
+
+type Subject implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  students: [Student!]! @relation(name: "SubjectOnStudent")
+  tutors: [Tutor!]! @relation(name: "SubjectOnTutor")
   updatedAt: DateTime!
 }
