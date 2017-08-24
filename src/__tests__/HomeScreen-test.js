@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeScreen from '../App';
+import HomeScreen from '../screens/Home/HomeScreen';
 import renderer from 'react-test-renderer';
 
 it('renders the loading screen', () => {

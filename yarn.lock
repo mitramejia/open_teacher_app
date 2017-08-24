@@ -4621,6 +4621,10 @@ react-native-easy-grid@0.1.15, react-native-easy-grid@^0.1.15:
   dependencies:
     lodash "^4.11.1"
 
+react-native-form-generator@^0.9.9:
+  version "0.9.9"
+  resolved "https://registry.yarnpkg.com/react-native-form-generator/-/react-native-form-generator-0.9.9.tgz#68aae26d1e8dc3e30073ccd7bb298fbdfdce1bca"
+
 react-native-gesture-handler@^1.0.0-alpha.14:
   version "1.0.0-alpha.17"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.0-alpha.17.tgz#1ae4412e1b208d175b34a14931d0635064a92e7b"
@@ -4628,6 +4632,14 @@ react-native-gesture-handler@^1.0.0-alpha.14:
 react-native-image-picker@^0.26.3:
   version "0.26.4"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.26.4.tgz#e53b0564bef44cb3c96ff81594e1e874daa1f0b3"
+
+react-native-keyboard-aware-scroll-view@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.3.0.tgz#b9d7b0d5b47d2bb4285fe50a3d274b10a3b5e1a7"
+  dependencies:
+    create-react-class "^15.6.0"
+    prop-types "^15.5.10"
+    react-timer-mixin "^0.13.3"
 
 "react-native-keyboard-aware-scroll-view@https://github.com/GeekyAnts/react-native-keyboard-aware-scroll-view":
   version "0.2.9"

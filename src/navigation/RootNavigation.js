@@ -5,7 +5,7 @@ import registerForPushNotificationsAsync from '../api/registerForPushNotificatio
 import StudentHomeScreen from '../screens/Student/Home/StudentHomeScreen';
 import LoginScreen from '../screens/Login/LoginScreen';
 import HomeScreen from "../screens/Home/HomeScreen";
-import CreateAccount from "../screens/CreateAccount/CreateAccount";
+import CreateAccount from "../screens/CreateAccount/CreateAccountScreen";
 
 // ==================================================================================
 // Global Navigation Configuration

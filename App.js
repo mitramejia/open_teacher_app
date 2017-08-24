@@ -6,7 +6,7 @@ import { Container } from 'native-base';
 import client from './src/api/graphql/GraphcoolConnection';
 import strings from './src/config/setting';
 import fonts from './src/config/fonts';
-import { style } from "./src/config/style";
+import { style } from './src/config/style';
 import RootNavigator from './src/navigation/RootNavigation';
 import images from './src/config/images';
 
@@ -58,10 +58,3 @@ export default class App extends React.Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  statusBarUnderlay: {
-    height: 34,
-    backgroundColor: 'rgba(0,0,0,0.2)',
-  },
-});
