@@ -8,8 +8,9 @@
 //
 // =============================================================
 import React from 'react';
-import { Content, Button, Text } from 'native-base';
-import PropTypes from 'prop-types';
+import { Content, Button, Text, Item } from 'native-base';
+import { Keyboard, TextInput } from 'react-native';
+import { compose, gql, graphql } from 'react-apollo';
 import {
   Form,
   Separator,
@@ -20,9 +21,35 @@ import {
   DatePickerField,
   TimePickerField,
 } from 'react-native-form-generator';
-import { KeyboardAwareScrollView } from 'react-native-form-generator/src/KeyboardAwareScrollView';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import style from './style';
 
-export default class CreateAccountScreen extends React.Component {
+const createAccountMutation = gql`
+  mutation(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $birthday: DateTime!
+    $password: String!
+  ) {
+    createUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      birthday: $birthday
+      password: $password
+    ) {
+      id
+      firstName
+      lastName
+      email
+      birthday
+      password
+    }
+  }
+`;
+
+class CreateAccountScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,21 +57,18 @@ export default class CreateAccountScreen extends React.Component {
     };
   }
 
-  static PropTypes = {
-    isUserLoggedIn: PropTypes.bool,
+  static navigationOptions = {
+    title: 'CREAR CUENTA',
   };
 
-  static navigationOptions = {
-    title: 'CreateAccountScreen',
-  };
   handleFormChange(formData) {
     /*
     formData will contain all the values of the form,
     in this example.
 
     formData = {
-    first_name:"",
-    last_name:"",
+    firstName:"",
+    lastName:"",
     gender: '',
     birthday: Date,
     has_accepted_conditions: bool
@@ -55,89 +79,26 @@ export default class CreateAccountScreen extends React.Component {
     this.props.onFormChange && this.props.onFormChange(formData);
   }
   handleFormFocus(event, reactNode) {
-    //console.log(e, component);
     this.refs.scroll.scrollToFocusedInput(event, reactNode);
   }
-  render() {
-    return (
-      <Content>
-        <KeyboardAwareScrollView ref="scroll">
-          <Form
-            ref="registrationForm"
-            onFocus={this.handleFormFocus.bind(this)}
-            onChange={this.handleFormChange.bind(this)}
-            label="Create Account">
-            <Separator />
-            <InputField
-              ref="first_name"
-              label="First Name"
-              placeholder="First Name"
-              helpText={(self => {
-                if (Object.keys(self.refs).length !== 0) {
-                  if (!self.refs.registrationForm.refs.first_name.valid) {
-                    return self.refs.registrationForm.refs.first_name.validationErrors.join('\n');
-                  }
-                }
-                // if(!!(self.refs && self.refs.first_name.valid)){
-                // }
-              })(this)}
-              validationFunction={this._nameValidations()}
-            />
-            <InputField ref="last_name" placeholder="Last Name" />
-            <InputField
-              multiline={false}
-              ref="other_input"
-              placeholder="Other Input"
-              helpText="this is an helpful text it can be also very very long and it will wrap"
-            />
-            <Separator />
-            <SwitchField
-              label="I accept Terms & Conditions"
-              ref="has_accepted_conditions"
-              helpText="Please read carefully the terms & conditions"
-            />
-            <PickerField
-              ref="gender"
-              label="Gender"
-              options={{
-                '': '',
-                male: 'Male',
-                female: 'Female',
-              }}
-            />
-            <DatePickerField
-              ref="birthday"
-              minimumDate={new Date('1/1/1900')}
-              maximumDate={new Date()}
-              placeholder="Birthday"
-            />
-            <TimePickerField ref="alarm_time" placeholder="Set Alarm" />
-            <DatePickerField
-              ref="meeting"
-              minimumDate={new Date('1/1/1900')}
-              maximumDate={new Date()}
-              mode="datetime"
-              placeholder="Meeting"
-            />
-          </Form>
-          <Text>
-            {JSON.stringify(this.state.formData)}
-          </Text>
-        </KeyboardAwareScrollView>
-      </Content>
-    );
+  _showValidationMessage(self) {
+    if (Object.keys(self.refs).length !== 0) {
+      if (!self.refs.registrationForm.refs.firstName.valid) {
+        return self.refs.registrationForm.refs.firstName.validationErrors.join('\n');
+      }
+    }
   }
 
-  _nameValidations(): array {
+  _nameValidations() {
     return [
       value => {
-        if (value === '') return 'Required';
+        if (value === '') return 'Campo Requerido';
         //Initial state is null/undefined
         if (!value) return true;
         // Check if First Name Contains Numbers
         let matches = value.match(/\d+/g);
         if (matches !== null) {
-          return "First Name can't contain numbers";
+          return 'No debe tener números';
         }
         return true;
       },
@@ -151,4 +112,79 @@ export default class CreateAccountScreen extends React.Component {
       },
     ];
   }
+
+  async _createAccount() {
+    const { firstName, lastName, email, birthday, password } = this.state.formData;
+    await this.props.createAccountMutation({
+      variables: { firstName, lastName, email, birthday, password },
+    });
+    this.props.onComplete();
+  }
+
+  render() {
+    return (
+      <KeyboardAwareScrollView
+        contentContainerStyle={style.container}
+        keyboardShouldPersistTaps="always"
+        onKeyboardWillShow={(frames: Object) => {
+          console.log('Keyboard event', frames);
+        }}
+        ref="scroll">
+        <Form
+          ref="registrationForm"
+          onFocus={this.handleFormFocus.bind(this)}
+          onChange={this.handleFormChange.bind(this)}
+          label="Create Account">
+          <InputField
+            style={style.inputField}
+            ref="firstName"
+            label="Nombre"
+            helpText={this._showValidationMessage(this)}
+            validationFunction={this._nameValidations()}
+          />
+          <InputField
+            style={style.inputField}
+            ref="lastName"
+            label="Apellido"
+            helpText={this._showValidationMessage(this)}
+            validationFunction={this._nameValidations()}
+          />
+          <InputField
+            style={style.inputField}
+            ref="email"
+            label="Email"
+            keyboardType="email-address"
+          />
+          <InputField
+            style={style.inputField}
+            ref="password"
+            label="Contraseña"
+            secureTextEntry={true}
+          />
+          <DatePickerField
+            ref="birthday"
+            minimumDate={new Date('1/1/1900')}
+            maximumDate={new Date()}
+            placeholder="Cumpleaños"
+          />
+        </Form>
+        <Button
+          disabled
+          rounded
+          block
+          style={style.submitButton}
+          onPress={this._createAccount.bind(this)}>
+          <Text>Crear Cuenta</Text>
+        </Button>
+        <Text>
+          {JSON.stringify(this.state.formData)}
+        </Text>
+      </KeyboardAwareScrollView>
+    );
+  }
 }
+
+const CreateAccount = graphql(createAccountMutation, { name: 'createAccountMutation' })(
+  CreateAccountScreen
+);
+export default CreateAccount;

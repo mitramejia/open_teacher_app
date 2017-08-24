@@ -12,13 +12,17 @@ import { colors } from '../../config/style';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 40,
   },
-  facebookButton: {
+  inputField: {
+    height: 50,
+  },
+  submitButton: {
     backgroundColor: colors.primary,
-    marginBottom: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
+    justifyContent: 'center',
+    marginTop: 20,
   },
   createAccountButton: {
     marginBottom: 20,
@@ -31,7 +35,7 @@ export default StyleSheet.create({
     marginTop: 3,
   },
   isTutorLink: {
-    textDecorationLine: `underline`,
+    textDecorationLine: 'underline',
     marginTop: 40,
     color: colors.primary,
   },
