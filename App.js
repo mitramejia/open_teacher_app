@@ -42,7 +42,7 @@ export default class App extends React.Component {
   async _loadAssets() {
     try {
       await Promise.all([
-        Asset.loadAsync([images.logo]),
+        Asset.loadAsync([images.logo, images.appIcon, images.loadingIcon, images.notificationIcon]),
         Font.loadAsync([
           // This is the font that we are using for our tab bar
           { RobotoRegular: fonts.robotoRegular },
@@ -52,7 +52,7 @@ export default class App extends React.Component {
       ]);
     } catch (error) {
       console.warn(strings.loadAssetsErrorMessage);
-      console.error(error);
+      console.error("Assets Error:" + error);
     } finally {
       this.setState({ assetsAreLoaded: true });
     }
