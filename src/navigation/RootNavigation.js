@@ -4,8 +4,8 @@ import { StackNavigator } from 'react-navigation';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import StudentHomeScreen from '../screens/Student/Home/StudentHomeScreen';
 import LoginScreen from '../screens/Login/LoginScreen';
-import HomeScreen from "../screens/Home/HomeScreen";
-import CreateAccount from "../screens/CreateAccount/CreateAccountScreen";
+import HomeScreen from '../screens/Home/HomeScreen';
+import CreateAccountScreen from '../screens/CreateAccount/CreateAccountScreen';
 
 // ==================================================================================
 // Global Navigation Configuration
@@ -20,7 +20,7 @@ const RootStackNavigator = StackNavigator(
       screen: LoginScreen,
     },
     CreateAccount: {
-      screen: CreateAccount,
+      screen: CreateAccountScreen,
     },
     StudentHome: {
       screen: StudentHomeScreen,
@@ -29,7 +29,7 @@ const RootStackNavigator = StackNavigator(
   {
     navigationOptions: () => ({
       headerTitleStyle: {
-        fontWeight: 'normal',
+        fontWeight: 'bold',
       },
     }),
   }

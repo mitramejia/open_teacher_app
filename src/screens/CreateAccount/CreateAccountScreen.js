@@ -33,11 +33,11 @@ const createAccountMutation = gql`
     $password: String!
   ) {
     createUser(
+      authProvider: { email: { email: $email, password: $password } }
       firstName: $firstName
       lastName: $lastName
       email: $email
       birthday: $birthday
-      password: $password
     ) {
       id
       firstName
@@ -65,14 +65,6 @@ class CreateAccountScreen extends React.Component {
     /*
     formData will contain all the values of the form,
     in this example.
-
-    formData = {
-    firstName:"",
-    lastName:"",
-    gender: '',
-    birthday: Date,
-    has_accepted_conditions: bool
-    }
     */
 
     this.setState({ formData });
@@ -80,37 +72,6 @@ class CreateAccountScreen extends React.Component {
   }
   handleFormFocus(event, reactNode) {
     this.refs.scroll.scrollToFocusedInput(event, reactNode);
-  }
-  _showValidationMessage(self) {
-    if (Object.keys(self.refs).length !== 0) {
-      if (!self.refs.registrationForm.refs.firstName.valid) {
-        return self.refs.registrationForm.refs.firstName.validationErrors.join('\n');
-      }
-    }
-  }
-
-  _nameValidations() {
-    return [
-      value => {
-        if (value === '') return 'Campo Requerido';
-        //Initial state is null/undefined
-        if (!value) return true;
-        // Check if First Name Contains Numbers
-        let matches = value.match(/\d+/g);
-        if (matches !== null) {
-          return 'No debe tener números';
-        }
-        return true;
-      },
-      value => {
-        ///Initial state is null/undefined
-        if (!value) return true;
-        if (value.indexOf('4') !== -1) {
-          return "I can't stand number 4";
-        }
-        return true;
-      },
-    ];
   }
 
   async _createAccount() {
@@ -135,20 +96,8 @@ class CreateAccountScreen extends React.Component {
           onFocus={this.handleFormFocus.bind(this)}
           onChange={this.handleFormChange.bind(this)}
           label="Create Account">
-          <InputField
-            style={style.inputField}
-            ref="firstName"
-            label="Nombre"
-            helpText={this._showValidationMessage(this)}
-            validationFunction={this._nameValidations()}
-          />
-          <InputField
-            style={style.inputField}
-            ref="lastName"
-            label="Apellido"
-            helpText={this._showValidationMessage(this)}
-            validationFunction={this._nameValidations()}
-          />
+          <InputField style={style.inputField} ref="firstName" label="Nombre" />
+          <InputField style={style.inputField} ref="lastName" label="Apellido" />
           <InputField
             style={style.inputField}
             ref="email"

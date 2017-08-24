@@ -9,7 +9,7 @@
 // =============================================================
 
 import React from 'react';
-import { Content, Text } from 'native-base';
+import { Content, Button, Text } from 'native-base';
 import strings from './strings';
 import style from './style';
 
@@ -26,9 +26,11 @@ export default class StudentHomeScreen extends React.Component {
   render() {
     return (
       <Content contentContainerStyle={style.container}>
-        <Text>
-          {strings.test}
-        </Text>
+        <Button>
+          <Text>
+            {strings.test}
+          </Text>
+        </Button>
       </Content>
     );
   }

@@ -12,7 +12,7 @@ export default class LoginScreen extends React.Component {
     super(props);
     this.state = {
       isTutor: false,
-      userData: null,
+      facebookUserData: null,
       userIsLoggedIn: this.props.userIsLoggedIn,
     };
   }
@@ -42,7 +42,7 @@ export default class LoginScreen extends React.Component {
       const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
       // Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
       this.setState({ userIsLoggedIn: true });
-      this.setState({ userData: response });
+      this.setState({ facebookUserData: response });
       this.props.navigation.navigate('StudentHome');
     }
   }
