@@ -18,7 +18,7 @@ export default StyleSheet.create({
     height: 50,
   },
   submitButton: {
-    backgroundColor: colors.primary,
+    // backgroundColor: colors.primary,
     paddingLeft: 10,
     paddingRight: 10,
     justifyContent: 'center',
