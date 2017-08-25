@@ -3,6 +3,7 @@ import { AppLoading, Asset, Font } from 'expo';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
 import { Container } from 'native-base';
+import { Ionicons } from '@expo/vector-icons';
 import client from './src/api/graphql/GraphcoolConnection';
 import strings from './src/config/setting';
 import fonts from './src/config/fonts';
@@ -42,9 +43,10 @@ export default class App extends React.Component {
   async _loadAssets() {
     try {
       await Promise.all([
-        Asset.loadAsync([images.logo, images.appIcon, images.loadingIcon, images.notificationIcon]),
+        // Asset.loadAsync([images.logo, images.appIcon, images.loadingIcon, images.notificationIcon]),
         Font.loadAsync([
           // This is the font that we are using for our tab bar
+          Ionicons.font,
           { RobotoRegular: fonts.robotoRegular },
           { RobotoMedium: fonts.robotoMedium },
           { RobotoBold: fonts.robotoBold },
