@@ -1,5 +1,5 @@
 # project: cj5zswpmnfr6201049umywa1m
-# version: 40
+# version: 45
 
 type Post implements Node {
   description: String!
@@ -34,13 +34,14 @@ type Tutor implements Node {
 
 type User implements Node {
   createdAt: DateTime!
-  birthdate: DateTime!
+  birthDate: DateTime
   firstName: String!
-  imageUrl: String!
+  imageUrl: String
   lastName: String!
   id: ID! @isUnique
   updatedAt: DateTime!
   email: String @isUnique
+  isTutor: Boolean! @defaultValue(value: false)
   password: String
 }
 
