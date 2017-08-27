@@ -10,7 +10,7 @@
 
 import React from 'react';
 import { AppLoading } from 'expo';
-import { Content, Button, Text, Item } from 'native-base';
+import { Content, Button, Text, Item, Toast } from 'native-base';
 import { Keyboard, TextInput, AsyncStorage } from 'react-native';
 import { compose, gql, graphql, withApollo } from 'react-apollo';
 import _ from 'lodash';
@@ -34,6 +34,7 @@ class CreateAccountScreen extends React.Component {
   constructor(...props) {
     super(...props);
     this.state = {
+      showToast: false,
       formData: {
         firstName: '',
         lastName: '',
@@ -45,92 +46,97 @@ class CreateAccountScreen extends React.Component {
   }
 
   static navigationOptions = {
-    title: 'CREAR CUENTA',
+    title: 'Crear Cuenta',
   };
 
-  handleFormChange(formData) {
+  _handleFormChange(formData) {
     this.setState({ formData });
     this.props.onFormChange && this.props.onFormChange(formData);
   }
 
-  _createAccount = () => {
-    if (!this.state.formData) {
-      return;
-    }
+  _createAccount() {
     const { firstName, lastName, email, password } = this.state.formData;
     this.props
       .createAccount({ variables: { firstName, lastName, email, password } })
       .then(response => {
+        console.log(response);
         this.props
           .signinUser({ variables: { email, password } })
           .then(response => {
-            AsyncStorage.setItem('graphcoolToken', response.data.signinUser.token);
-            this.props.navigation.navigate('StudentHomeScreen');
+            console.log(response);
+            AsyncStorage.setItem('token', response.data.signinUser.token);
+            this.props.navigation.navigate('Home');
+            Toast.show({
+              text: `Hola ${firstName}`,
+              position: 'bottom',
+              buttonText: 'Ocultar',
+              type: 'success',
+              duration: 4000,
+            });
           })
           .catch(e => {
-            console.error(e);
+            console.error(e.message);
+            this.props.navigation.navigate('Home');
           });
       })
       .catch(e => {
-        console.error(e);
+        console.error(e.message);
+        this.props.navigation.navigate('Home');
       });
-  };
-
-  _redirectToUserHome() {}
-
-  componentDidMount() {
-    console.log(this._checkAllFieldsAreValid());
+    console.log('User: ' + this.props.data.user);
   }
+
   _checkAllFieldsAreValid() {
-    return _.some(this.state.formData, value => value !== '');
-    // pregunto por cada input
-    // son 4 inputs
-    // si un iput esta vacio set form error true
-    // si ningun input esta vacio set form error false
+    return _.every(this.state.formData, value => {
+      // Check all form fields aren't empty or undefined
+      if (value !== '' || value !== undefined) {
+        return true;
+      }
+    });
   }
 
   render() {
     if (this.props.data.loading) {
       return <AppLoading />;
+    } else {
+      return (
+        <KeyboardAwareScrollView
+          contentContainerStyle={style.container}
+          keyboardShouldPersistTaps="always"
+          ref="scroll">
+          <Form
+            ref="registrationForm"
+            onChange={this._handleFormChange.bind(this)}
+            label="Create Account">
+            <InputField style={style.inputField} ref="firstName" label="Nombre" />
+            <InputField style={style.inputField} ref="lastName" label="Apellido" />
+            <InputField
+              style={style.inputField}
+              ref="email"
+              label="Email"
+              keyboardType="email-address"
+            />
+            <InputField
+              style={style.inputField}
+              ref="password"
+              label="Contraseña"
+              secureTextEntry={true}
+            />
+          </Form>
+          {this._checkAllFieldsAreValid() &&
+            <Button
+              rounded
+              block
+              style={style.submitButton}
+              onPress={this._createAccount.bind(this)}>
+              <Text>Crear Cuenta</Text>
+            </Button>}
+          <Text>
+            {JSON.stringify(this.state.formData)}
+          </Text>
+        </KeyboardAwareScrollView>
+      );
     }
-    return (
-      <KeyboardAwareScrollView
-        contentContainerStyle={style.container}
-        keyboardShouldPersistTaps="always"
-        ref="scroll">
-        <Form
-          ref="registrationForm"
-          onChange={this.handleFormChange.bind(this)}
-          label="Create Account">
-          <InputField style={style.inputField} ref="firstName" label="Nombre" />
-          <InputField style={style.inputField} ref="lastName" label="Apellido" />
-          <InputField
-            style={style.inputField}
-            ref="email"
-            label="Email"
-            keyboardType="email-address"
-          />
-          <InputField
-            style={style.inputField}
-            ref="password"
-            label="Contraseña"
-            secureTextEntry={true}
-          />
-        </Form>
-        {this.state.formData &&
-          <Button
-            disabled
-            rounded
-            block
-            style={style.submitButton}
-            onPress={this._createAccount.bind(this)}>
-            <Text>Crear Cuenta</Text>
-          </Button>}
-        <Text>
-          {JSON.stringify(this.state.formData)}
-        </Text>
-      </KeyboardAwareScrollView>
-    );
   }
 }
 

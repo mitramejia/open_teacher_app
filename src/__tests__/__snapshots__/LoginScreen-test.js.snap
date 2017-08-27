@@ -30,7 +30,7 @@ exports[`renders a Login Screen 1`] = `
   }
   scrollEventThrottle={0}
   showsVerticalScrollIndicator={true}
-  style={
+  styles={
     Object {
       "backgroundColor": "transparent",
       "flex": 1,
@@ -40,11 +40,11 @@ exports[`renders a Login Screen 1`] = `
 >
   <View>
     <View
-      style={undefined}
+      styles={undefined}
     >
       <Image
         source={1}
-        style={
+        styles={
           Object {
             "alignContent": "center",
             "height": 280,
@@ -72,7 +72,7 @@ exports[`renders a Login Screen 1`] = `
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
+        styles={
           Object {
             "alignItems": "center",
             "alignSelf": "flex-start",
@@ -103,7 +103,7 @@ exports[`renders a Login Screen 1`] = `
           allowFontScaling={true}
           disabled={false}
           ellipsizeMode="tail"
-          style={
+          styles={
             Object {
               "color": "#fff",
               "fontFamily": "System",
@@ -137,7 +137,7 @@ exports[`renders a Login Screen 1`] = `
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
+        styles={
           Object {
             "alignItems": "center",
             "alignSelf": "flex-start",
@@ -173,7 +173,7 @@ exports[`renders a Login Screen 1`] = `
           allowFontScaling={true}
           disabled={false}
           ellipsizeMode="tail"
-          style={
+          styles={
             Object {
               "color": "#007aff",
               "fontFamily": "System",
@@ -196,7 +196,7 @@ exports[`renders a Login Screen 1`] = `
       disabled={false}
       ellipsizeMode="tail"
       onPress={[Function]}
-      style={
+      styles={
         Array [
           Object {
             "color": "#000",
