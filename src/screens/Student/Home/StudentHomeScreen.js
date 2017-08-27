@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { Content, Button, Text } from 'native-base';
+import PropTypes from 'prop-types';
 import strings from './strings';
 import style from './style';
 
@@ -35,3 +36,9 @@ export default class StudentHomeScreen extends React.Component {
     );
   }
 }
+
+StudentHomeScreen.propTypes = {
+  client: React.PropTypes.object.isRequired,
+  navigation: React.PropTypes.object.isRequired,
+  user: React.PropTypes.object.isRequired,
+};
