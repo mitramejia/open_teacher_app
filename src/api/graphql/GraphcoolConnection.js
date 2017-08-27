@@ -9,11 +9,11 @@
 // =============================================================
 
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
-import { GRAPHQL_SIMPLE_API_URL, WEB_SOCKET_CLIENT_URL } from 'react-native-dotenv';
+import { GRAPHCOOL_SIMPLE_API, GRAPHCOOL_WEB_SOCKET_CLIENT } from 'react-native-dotenv';
 import { addGraphQLSubscriptions, SubscriptionClient } from 'subscriptions-transport-ws';
 import { AsyncStorage } from 'react-native';
 
-const networkInterface = createNetworkInterface({ uri: GRAPHQL_SIMPLE_API_URL });
+const networkInterface = createNetworkInterface({ uri: GRAPHCOOL_SIMPLE_API });
 
 // Use middleware to manage auth tokens
 networkInterface.use([
@@ -38,7 +38,7 @@ networkInterface.use([
 ]);
 
 // Create WebSocket client
-const wsClient = new SubscriptionClient(WEB_SOCKET_CLIENT_URL, {
+const wsClient = new SubscriptionClient(GRAPHCOOL_WEB_SOCKET_CLIENT, {
   reconnect: true,
 });
 // Extend the network interface with the WebSocket

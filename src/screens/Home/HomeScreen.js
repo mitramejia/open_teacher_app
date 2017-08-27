@@ -14,6 +14,9 @@ class HomeScreen extends React.Component {
     user: null,
   };
 
+  static navigationOptions = {
+    header: null,
+  };
 
   _logout = async () => {
     await AsyncStorage.removeItem('token');
