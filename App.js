@@ -5,12 +5,11 @@ import { ApolloProvider } from 'react-apollo';
 import { Container } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 import client from './src/api/graphql/GraphcoolConnection';
-import strings from './src/config/setting';
+import settings from './src/config/settings';
 import fonts from './src/config/fonts';
-import { style } from './src/config/style';
+import { styles } from './src/config/style';
 import RootNavigator from './src/navigation/RootNavigation';
 import images from './src/config/images';
-import PostList from "./PostList";
 
 export default class App extends React.Component {
   constructor(...args) {
@@ -28,7 +27,7 @@ export default class App extends React.Component {
       return (
         <Container>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' && <View style={style.statusBarUnderlay} />}
+          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
           <ApolloProvider client={client}>
             <RootNavigator />
           </ApolloProvider>
@@ -54,7 +53,7 @@ export default class App extends React.Component {
         ]),
       ]);
     } catch (error) {
-      console.warn(strings.loadAssetsErrorMessage);
+      console.warn(settings.loadAssetsErrorMessage);
       console.error("Assets Error:" + error);
     } finally {
       this.setState({ assetsAreLoaded: true });
