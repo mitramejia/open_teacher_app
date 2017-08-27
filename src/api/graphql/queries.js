@@ -30,6 +30,9 @@ export const userQuery = gql`
   query {
     user {
       id
+      firstName
+      lastName
+      email
     }
   }
 `;
