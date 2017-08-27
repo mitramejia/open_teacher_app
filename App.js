@@ -10,6 +10,7 @@ import fonts from './src/config/fonts';
 import { style } from './src/config/style';
 import RootNavigator from './src/navigation/RootNavigation';
 import images from './src/config/images';
+import PostList from "./PostList";
 
 export default class App extends React.Component {
   constructor(...args) {
@@ -43,13 +44,13 @@ export default class App extends React.Component {
   async _loadAssets() {
     try {
       await Promise.all([
-        // Asset.loadAsync([images.logo, images.appIcon, images.loadingIcon, images.notificationIcon]),
+        Asset.loadAsync([images.logo, images.appIcon, images.loadingIcon, images.notificationIcon]),
         Font.loadAsync([
           // This is the font that we are using for our tab bar
           Ionicons.font,
-          { RobotoRegular: fonts.robotoRegular },
-          { RobotoMedium: fonts.robotoMedium },
-          { RobotoBold: fonts.robotoBold },
+          { 'RobotoRegular': fonts.robotoRegular },
+          { 'RobotoMedium': fonts.robotoMedium },
+          { 'RobotoBold': fonts.robotoBold },
         ]),
       ]);
     } catch (error) {
