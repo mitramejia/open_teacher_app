@@ -1,5 +1,6 @@
 import React from 'react';
 import { Notifications } from 'expo';
+import { Root } from 'native-base';
 import { StackNavigator } from 'react-navigation';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import StudentHomeScreen from '../screens/Student/Home/StudentHomeScreen';
@@ -53,7 +54,11 @@ export default class RootNavigator extends React.Component {
   }
 
   render() {
-    return <RootStackNavigator />;
+    return (
+      <Root>
+        <RootStackNavigator />
+      </Root>
+    );
   }
 
   _registerForPushNotifications() {
