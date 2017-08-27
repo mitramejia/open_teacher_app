@@ -7,14 +7,17 @@ import StudentHomeScreen from '../Student/Home/StudentHomeScreen';
 import LoginScreen from '../Login/LoginScreen';
 import TutorHomeScreen from '../Tutor/Home/TutorHomeScreen';
 import { userQuery } from '../../api/graphql/queries';
+import { AsyncStorage } from "react-native";
 
 class HomeScreen extends React.Component {
   state = {
     user: null,
   };
 
-  static navigationOptions = {
-    header: null,
+
+  _logout = async () => {
+    await AsyncStorage.removeItem('token');
+    this.props.client.resetStore();
   };
 
   _userIsLoggedIn = () => {
