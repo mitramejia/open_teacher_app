@@ -1,5 +1,5 @@
 # project: cj5zswpmnfr6201049umywa1m
-# version: 45
+# version: 48
 
 type Post implements Node {
   description: String!
@@ -30,11 +30,11 @@ type Tutor implements Node {
   lessons: [Lesson!]! @relation(name: "TutorOnLesson")
   locations: [String!]!
   subjects: [Subject!]! @relation(name: "SubjectOnTutor")
+  user: User! @relation(name: "UserOnTutor")
 }
 
 type User implements Node {
   createdAt: DateTime!
-  birthDate: DateTime
   firstName: String!
   imageUrl: String
   lastName: String!
@@ -43,6 +43,8 @@ type User implements Node {
   email: String @isUnique
   isTutor: Boolean! @defaultValue(value: false)
   password: String
+  student: Student @relation(name: "UserOnStudent")
+  tutor: Tutor @relation(name: "UserOnTutor")
 }
 
 type Lesson implements Node {
@@ -62,6 +64,7 @@ type Student implements Node {
   subjects: [Subject!]! @relation(name: "SubjectOnStudent")
   tutor: Tutor @relation(name: "TutorOnStudent")
   updatedAt: DateTime!
+  user: User! @relation(name: "UserOnStudent")
 }
 
 type Subject implements Node {
