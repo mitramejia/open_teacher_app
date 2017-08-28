@@ -44,3 +44,12 @@ export const signinUser = gql`
     }
   }
 `;
+
+export const allSubjectsQuery = gql`
+  query {
+    allSubjects {
+      id
+      name
+    }
+  }
+`;
