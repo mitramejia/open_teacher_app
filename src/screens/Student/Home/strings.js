@@ -9,5 +9,6 @@
 // =============================================================
 
 export default {
-  test: 'test',
+  subjectInputField: 'Qué materia deseas aprender?',
+  timeInputField: 'Cuándo estás disponible?',
 };

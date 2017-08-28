@@ -9,40 +9,20 @@
 // =============================================================
 
 import React from 'react';
-import { Content, Button, Text, Toast } from 'native-base';
+import { Container, Content, Header, Form, Item, Input, Toast, Button } from 'native-base';
 import propTypes from 'prop-types';
-import { AsyncStorage } from 'react-native';
-import strings from './strings';
 import style from './style';
+import TutorSearchForm from './Form/TutorSearchForm';
 
 class StudentHomeScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   static navigationOptions = {
-    title: 'StudentHomeScreen',
+    header: null,
   };
-  _logout = async () => {
-    await AsyncStorage.removeItem('token');
-    this.props.client.resetStore();
-    Toast.show({
-      text: 'Adios',
-      position: 'bottom',
-      buttonText: 'Ocultar',
-      type: 'success',
-      duration: 4000,
-    });
-  };
+
   render() {
     return (
-      <Content padder contentContainerStyle={style.container}>
-        <Button onPress={this._logout.bind(this)}>
-          <Text>
-            {strings.test}
-          </Text>
-        </Button>
+      <Content contentContainerStyle={style.container}>
+        <TutorSearchForm client={this.props.client} />
       </Content>
     );
   }
