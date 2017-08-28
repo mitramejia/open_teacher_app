@@ -10,10 +10,11 @@
 
 import React from 'react';
 import { Content, Button, Text } from 'native-base';
+import PropTypes from 'prop-types';
 import strings from './strings';
 import style from './style';
 
-export default class TutorHomeScreen extends React.Component {
+class TutorHomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -35,3 +36,11 @@ export default class TutorHomeScreen extends React.Component {
     );
   }
 }
+
+TutorHomeScreen.propTypes = {
+  client: React.PropTypes.object.isRequired,
+  navigation: React.PropTypes.object.isRequired,
+  user: React.PropTypes.object.isRequired,
+};
+
+export default TutorHomeScreen;
