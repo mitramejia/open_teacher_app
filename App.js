@@ -1,15 +1,12 @@
 import React from 'react';
-import { AppLoading, Asset, Font } from 'expo';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { AppLoading} from 'expo';
+import { Platform, StatusBar, View } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
 import { Container } from 'native-base';
-import { Ionicons } from '@expo/vector-icons';
 import client from './src/api/graphql/GraphcoolConnection';
-import settings from './src/config/settings';
-import fonts from './src/config/fonts';
 import { styles } from './src/config/style';
 import RootNavigator from './src/navigation/RootNavigation';
-import images from './src/config/images';
+import { loadAssets } from './src/assets/loadAssets';
 
 export default class App extends React.Component {
   constructor(...args) {
@@ -19,7 +16,9 @@ export default class App extends React.Component {
       userIsLoggedIn: false,
     };
   }
-
+  async componentWillMount() {
+    loadAssets(this);
+  }
   render() {
     if (!this.state.assetsAreLoaded && !this.props.skipLoadingScreen) {
       return <AppLoading />;
@@ -33,30 +32,6 @@ export default class App extends React.Component {
           </ApolloProvider>
         </Container>
       );
-    }
-  }
-
-  async componentWillMount() {
-    this._loadAssets();
-  }
-
-  async _loadAssets() {
-    try {
-      await Promise.all([
-        Asset.loadAsync([images.logo, images.appIcon, images.loadingIcon, images.notificationIcon]),
-        Font.loadAsync([
-          // This is the font that we are using for our tab bar
-          Ionicons.font,
-          { 'RobotoRegular': fonts.robotoRegular },
-          { 'RobotoMedium': fonts.robotoMedium },
-          { 'RobotoBold': fonts.robotoBold },
-        ]),
-      ]);
-    } catch (error) {
-      console.warn(settings.loadAssetsErrorMessage);
-      console.error("Assets Error:" + error);
-    } finally {
-      this.setState({ assetsAreLoaded: true });
     }
   }
 }
