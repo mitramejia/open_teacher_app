@@ -22,13 +22,12 @@ export async function loadAssets(ref) {
         // This is the font that we are using for our tab bar
         Ionicons.font,
         { Roboto_regular: fonts.robotoRegular },
-        { Roboto_nedium: fonts.robotoMedium },
+        { Roboto_medium: fonts.robotoMedium },
         { Roboto_bold: fonts.robotoBold },
       ]),
     ]);
   } catch (error) {
     console.warn(settings.loadAssetsErrorMessage);
-    console.error('Assets Error:' + error);
   } finally {
     ref.setState({ assetsAreLoaded: true });
   }
