@@ -10,23 +10,12 @@
 
 import React from 'react';
 import { AppLoading } from 'expo';
-import { Content, Button, Text, Item, Toast } from 'native-base';
-import { Keyboard, TextInput, AsyncStorage } from 'react-native';
-import { compose, gql, graphql, withApollo } from 'react-apollo';
+import { Content, Button, Text, Toast } from 'native-base';
+import { AsyncStorage, ScrollView } from 'react-native';
+import { graphql, withApollo } from 'react-apollo';
 import _ from 'lodash';
-import propTypes from 'prop-types';
-import {
-  Form,
-  Separator,
-  InputField,
-  LinkField,
-  SwitchField,
-  PickerField,
-  DatePickerField,
-  TimePickerField,
-} from 'react-native-form-generator';
-import { Ionicons } from '@expo/vector-icons';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import PropTypes from 'prop-types';
+import { Form, InputField } from 'react-native-form-generator';
 import style from './style';
 import { createAccount, signinUser, userQuery } from '../../api/graphql/queries';
 
@@ -100,7 +89,7 @@ class CreateAccountScreen extends React.Component {
       return <AppLoading />;
     } else {
       return (
-        <KeyboardAwareScrollView
+        <ScrollView
           contentContainerStyle={style.container}
           keyboardShouldPersistTaps="always"
           ref="scroll">
@@ -134,7 +123,7 @@ class CreateAccountScreen extends React.Component {
           <Text>
             {JSON.stringify(this.state.formData)}
           </Text>
-        </KeyboardAwareScrollView>
+        </ScrollView>
       );
     }
   }
