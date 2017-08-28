@@ -14,7 +14,7 @@ export const colors = {
   noticeText: '#fff',
 };
 
-export const style = StyleSheet.create({
+export const styles = StyleSheet.create({
   statusBarUnderlay: {
     height: 34,
     backgroundColor: 'rgba(0,0,0,0.2)',

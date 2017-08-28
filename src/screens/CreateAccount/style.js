@@ -19,8 +19,7 @@ export default StyleSheet.create({
   },
   submitButton: {
     backgroundColor: colors.primary,
-    paddingLeft: 10,
-    paddingRight: 10,
+    width: 250,
     justifyContent: 'center',
     marginTop: 20,
   },

@@ -7,184 +7,138 @@
 // Created at: 8/21/17
 //
 // =============================================================
-import React from 'react';
-import { Content, Button, Text, Item } from 'native-base';
-import { Keyboard, TextInput } from 'react-native';
-import { compose, gql, graphql } from 'react-apollo';
-import {
-  Form,
-  Separator,
-  InputField,
-  LinkField,
-  SwitchField,
-  PickerField,
-  DatePickerField,
-  TimePickerField,
-} from 'react-native-form-generator';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import style from './style';
 
-const createAccountMutation = gql`
-  mutation(
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-    $birthday: DateTime!
-    $password: String!
-  ) {
-    createUser(
-      firstName: $firstName
-      lastName: $lastName
-      email: $email
-      birthday: $birthday
-      password: $password
-    ) {
-      id
-      firstName
-      lastName
-      email
-      birthday
-      password
-    }
-  }
-`;
+import React from 'react';
+import { AppLoading } from 'expo';
+import { Content, Button, Text, Toast } from 'native-base';
+import { AsyncStorage, ScrollView } from 'react-native';
+import { graphql, withApollo } from 'react-apollo';
+import _ from 'lodash';
+import PropTypes from 'prop-types';
+import { Form, InputField } from 'react-native-form-generator';
+import style from './style';
+import { createAccount, signinUser, userQuery } from '../../api/graphql/queries';
 
 class CreateAccountScreen extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(...props) {
+    super(...props);
     this.state = {
-      formData: {},
+      showToast: false,
+      formData: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+      },
+      formError: true,
     };
   }
 
   static navigationOptions = {
-    title: 'CREAR CUENTA',
+    title: 'Crear Cuenta',
   };
 
-  handleFormChange(formData) {
-    /*
-    formData will contain all the values of the form,
-    in this example.
-
-    formData = {
-    firstName:"",
-    lastName:"",
-    gender: '',
-    birthday: Date,
-    has_accepted_conditions: bool
-    }
-    */
-
+  _handleFormChange(formData) {
     this.setState({ formData });
     this.props.onFormChange && this.props.onFormChange(formData);
   }
-  handleFormFocus(event, reactNode) {
-    this.refs.scroll.scrollToFocusedInput(event, reactNode);
+
+  _createAccount() {
+    const { firstName, lastName, email, password } = this.state.formData;
+    this.props
+      .createAccount({ variables: { firstName, lastName, email, password } })
+      .then(response => {
+        console.log(response);
+        this.props
+          .signinUser({ variables: { email, password } })
+          .then(response => {
+            console.log(response);
+            AsyncStorage.setItem('token', response.data.signinUser.token);
+            this.props.navigation.navigate('Home');
+            Toast.show({
+              text: `Hola ${firstName}`,
+              position: 'bottom',
+              buttonText: 'Ocultar',
+              type: 'success',
+              duration: 4000,
+            });
+          })
+          .catch(e => {
+            console.error(e.message);
+            this.props.navigation.navigate('Home');
+          });
+      })
+      .catch(e => {
+        console.error(e.message);
+        this.props.navigation.navigate('Home');
+      });
+    console.log('User: ' + this.props.data.user);
   }
-  _showValidationMessage(self) {
-    if (Object.keys(self.refs).length !== 0) {
-      if (!self.refs.registrationForm.refs.firstName.valid) {
-        return self.refs.registrationForm.refs.firstName.validationErrors.join('\n');
+
+  _checkAllFieldsAreValid() {
+    return _.every(this.state.formData, value => {
+      // Check all form fields aren't empty or undefined
+      if (value !== '' || value !== undefined) {
+        return true;
       }
-    }
-  }
-
-  _nameValidations() {
-    return [
-      value => {
-        if (value === '') return 'Campo Requerido';
-        //Initial state is null/undefined
-        if (!value) return true;
-        // Check if First Name Contains Numbers
-        let matches = value.match(/\d+/g);
-        if (matches !== null) {
-          return 'No debe tener números';
-        }
-        return true;
-      },
-      value => {
-        ///Initial state is null/undefined
-        if (!value) return true;
-        if (value.indexOf('4') !== -1) {
-          return "I can't stand number 4";
-        }
-        return true;
-      },
-    ];
-  }
-
-  async _createAccount() {
-    const { firstName, lastName, email, birthday, password } = this.state.formData;
-    await this.props.createAccountMutation({
-      variables: { firstName, lastName, email, birthday, password },
     });
-    this.props.onComplete();
   }
 
   render() {
-    return (
-      <KeyboardAwareScrollView
-        contentContainerStyle={style.container}
-        keyboardShouldPersistTaps="always"
-        onKeyboardWillShow={(frames: Object) => {
-          console.log('Keyboard event', frames);
-        }}
-        ref="scroll">
-        <Form
-          ref="registrationForm"
-          onFocus={this.handleFormFocus.bind(this)}
-          onChange={this.handleFormChange.bind(this)}
-          label="Create Account">
-          <InputField
-            style={style.inputField}
-            ref="firstName"
-            label="Nombre"
-            helpText={this._showValidationMessage(this)}
-            validationFunction={this._nameValidations()}
-          />
-          <InputField
-            style={style.inputField}
-            ref="lastName"
-            label="Apellido"
-            helpText={this._showValidationMessage(this)}
-            validationFunction={this._nameValidations()}
-          />
-          <InputField
-            style={style.inputField}
-            ref="email"
-            label="Email"
-            keyboardType="email-address"
-          />
-          <InputField
-            style={style.inputField}
-            ref="password"
-            label="Contraseña"
-            secureTextEntry={true}
-          />
-          <DatePickerField
-            ref="birthday"
-            minimumDate={new Date('1/1/1900')}
-            maximumDate={new Date()}
-            placeholder="Cumpleaños"
-          />
-        </Form>
-        <Button
-          disabled
-          rounded
-          block
-          style={style.submitButton}
-          onPress={this._createAccount.bind(this)}>
-          <Text>Crear Cuenta</Text>
-        </Button>
-        <Text>
-          {JSON.stringify(this.state.formData)}
-        </Text>
-      </KeyboardAwareScrollView>
-    );
+    if (this.props.data.loading) {
+      return <AppLoading />;
+    } else {
+      return (
+        <ScrollView
+          contentContainerStyle={style.container}
+          keyboardShouldPersistTaps="always"
+          ref="scroll">
+          <Form
+            ref="registrationForm"
+            onChange={this._handleFormChange.bind(this)}
+            label="Create Account">
+            <InputField style={style.inputField} ref="firstName" label="Nombre" />
+            <InputField style={style.inputField} ref="lastName" label="Apellido" />
+            <InputField
+              style={style.inputField}
+              ref="email"
+              label="Email"
+              keyboardType="email-address"
+            />
+            <InputField
+              style={style.inputField}
+              ref="password"
+              label="Contraseña"
+              secureTextEntry={true}
+            />
+          </Form>
+          {this._checkAllFieldsAreValid() &&
+            <Button
+              rounded
+              block
+              style={style.submitButton}
+              onPress={this._createAccount.bind(this)}>
+              <Text>Crear Cuenta</Text>
+            </Button>}
+          <Text>
+            {JSON.stringify(this.state.formData)}
+          </Text>
+        </ScrollView>
+      );
+    }
   }
 }
 
-const CreateAccount = graphql(createAccountMutation, { name: 'createAccountMutation' })(
-  CreateAccountScreen
+CreateAccountScreen.propTypes = {
+  client: React.PropTypes.object.isRequired,
+  navigation: React.PropTypes.object.isRequired,
+  createAccount: React.PropTypes.func.isRequired,
+  signinUser: React.PropTypes.func.isRequired,
+  data: React.PropTypes.object.isRequired,
+};
+
+export default graphql(createAccount, { name: 'createAccount' })(
+  graphql(userQuery, { options: { fetchPolicy: 'network-only' } })(
+    graphql(signinUser, { name: 'signinUser' })(withApollo(CreateAccountScreen))
+  )
 );
-export default CreateAccount;

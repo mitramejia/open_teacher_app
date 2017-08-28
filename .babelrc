@@ -3,7 +3,6 @@
     "babel-preset-expo",
     "react-native",
     "react-native-dotenv",
-    "flow"
   ],
   "env": {
     "development": {

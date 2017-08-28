@@ -9,36 +9,25 @@
 // =============================================================
 
 import React from 'react';
-import { Content, Button, Text, Toast } from 'native-base';
-import propTypes from 'prop-types';
-import { AsyncStorage } from 'react-native';
+import { Content, Button, Text } from 'native-base';
+import PropTypes from 'prop-types';
 import strings from './strings';
 import style from './style';
 
-class StudentHomeScreen extends React.Component {
+class TutorHomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   static navigationOptions = {
-    title: 'StudentHomeScreen',
+    title: 'TutorHomeScreen',
   };
-  _logout = async () => {
-    await AsyncStorage.removeItem('token');
-    this.props.client.resetStore();
-    Toast.show({
-      text: 'Adios',
-      position: 'bottom',
-      buttonText: 'Ocultar',
-      type: 'success',
-      duration: 4000,
-    });
-  };
+
   render() {
     return (
-      <Content padder contentContainerStyle={style.container}>
-        <Button onPress={this._logout.bind(this)}>
+      <Content contentContainerStyle={style.container}>
+        <Button>
           <Text>
             {strings.test}
           </Text>
@@ -48,10 +37,10 @@ class StudentHomeScreen extends React.Component {
   }
 }
 
-StudentHomeScreen.propTypes = {
+TutorHomeScreen.propTypes = {
   client: React.PropTypes.object.isRequired,
   navigation: React.PropTypes.object.isRequired,
   user: React.PropTypes.object.isRequired,
 };
 
-export default StudentHomeScreen;
+export default TutorHomeScreen;

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Notifications } from 'expo';
+import { Root } from 'native-base';
 import { StackNavigator } from 'react-navigation';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import StudentHomeScreen from '../screens/Student/Home/StudentHomeScreen';
+import TutorHomeScreen from '../screens/Tutor/Home/TutorHomeScreen';
 import LoginScreen from '../screens/Login/LoginScreen';
-import HomeScreen from "../screens/Home/HomeScreen";
-import CreateAccount from "../screens/CreateAccount/CreateAccountScreen";
+import HomeScreen from '../screens/Home/HomeScreen';
+import CreateAccountScreen from '../screens/CreateAccount/CreateAccountScreen';
 
 // ==================================================================================
 // Global Navigation Configuration
@@ -20,16 +22,19 @@ const RootStackNavigator = StackNavigator(
       screen: LoginScreen,
     },
     CreateAccount: {
-      screen: CreateAccount,
+      screen: CreateAccountScreen,
     },
     StudentHome: {
       screen: StudentHomeScreen,
+    },
+    TutorHome: {
+      screen: TutorHomeScreen,
     },
   },
   {
     navigationOptions: () => ({
       headerTitleStyle: {
-        fontWeight: 'normal',
+        fontFamily: 'RobotoRegular',
       },
     }),
   }
@@ -49,7 +54,11 @@ export default class RootNavigator extends React.Component {
   }
 
   render() {
-    return <RootStackNavigator />;
+    return (
+      <Root>
+        <RootStackNavigator />
+      </Root>
+    );
   }
 
   _registerForPushNotifications() {
