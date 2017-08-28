@@ -1,13 +1,13 @@
 import React from 'react';
 import { AppLoading } from 'expo';
-import { Button, Text, Content } from 'native-base';
-import { ApolloProvider, compose, gql, graphql, withApollo } from 'react-apollo';
-import PropTypes from 'prop-types';
+import { AsyncStorage } from "react-native";
+import { Button, Content } from 'native-base';
+import { graphql, withApollo } from 'react-apollo';
+import propTypes from 'prop-types';
 import StudentHomeScreen from '../Student/Home/StudentHomeScreen';
 import LoginScreen from '../Login/LoginScreen';
 import TutorHomeScreen from '../Tutor/Home/TutorHomeScreen';
 import { userQuery } from '../../api/graphql/queries';
-import { AsyncStorage } from "react-native";
 
 class HomeScreen extends React.Component {
   state = {
