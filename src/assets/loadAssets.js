@@ -14,7 +14,7 @@ import images from '../config/images';
 import fonts from '../config/fonts';
 import settings from '../config/settings';
 
-export default async function loadAssets(ref) {
+export async function loadAssets(ref) {
   try {
     await Promise.all([
       Asset.loadAsync([images.logo, images.appIcon, images.loadingIcon, images.notificationIcon]),
