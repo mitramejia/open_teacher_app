@@ -9,12 +9,16 @@
 // =============================================================
 import React from 'react';
 import { graphql, withApollo } from 'react-apollo';
+import PropTypes from 'prop-types';
 import { allSubjectsQuery } from '../../../../api/graphql/queries';
-import { Item, Picker } from 'native-base';
+import { Content, Icon, Item, Picker } from 'native-base';
+import { AppLoading } from 'expo';
+import style from '../style';
+import { colors } from '../../../../config/style';
 
 class SubjectPicker extends React.Component {
   constructor(...props) {
-    super(props);
+    super(...props);
     this.state = {
       selectedOption: undefined,
     };
@@ -25,20 +29,39 @@ class SubjectPicker extends React.Component {
     });
   }
   render() {
-    return (
-      <Picker
-        mode="dropdown"
-        placeholder="Select One"
-        selectedValue={this.state.selectedOption}
-        onValueChange={this._onValueChange.bind(this)}>
-        <Item label="Wallet" value="key0" />
-        <Item label="ATM Card" value="key1" />
-        <Item label="Debit Card" value="key2" />
-        <Item label="Credit Card" value="key3" />
-        <Item label="Net Banking" value="key4" />
-      </Picker>
-    );
+    if (this.props.allSubjectsQuery.loading) {
+      return <AppLoading />;
+    } else {
+      return (
+        <Content>
+          <Item style={style.inputField} regular>
+            <Icon
+              name="ios-book-outline"
+              size={44}
+              color={colors.secondary}
+            />
+            <Picker
+              mode="dropdown"
+              placeholder="Materias"
+              iosHeader="Materias"
+              headerBackButtonText="Atras"
+              selectedValue={this.state.selectedOption}
+              onValueChange={this._onValueChange.bind(this)}>
+              {this.props.allSubjectsQuery.allSubjects.map(subject =>
+                <Item label={subject.name} value={subject.name} key={subject.id} />
+              )}
+            </Picker>
+          </Item>
+        </Content>
+      );
+    }
   }
 }
+SubjectPicker.propTypes = {
+  allSubjectsQuery: PropTypes.shape({
+    loading: PropTypes.bool.isRequired,
+    allSubjects: PropTypes.array,
+  }).isRequired,
+};
 
-export default graphql(allSubjectsQuery)(withApollo(SubjectPicker));
+export default graphql(allSubjectsQuery, { name: 'allSubjectsQuery' })(withApollo(SubjectPicker));
