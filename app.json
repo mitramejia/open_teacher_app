@@ -7,19 +7,19 @@
     "sdkVersion": "20.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
-    "primaryColor": "#cccccc",
-    "icon": "./assets/icons/app-icon.png",
+    "primaryColor": "#5090CD",
+    "icon": "./src/assets/icons/app-icon.png",
     "facebookScheme":"fb1725290091110977",
     "notification": {
-      "icon": "./assets/icons/notification-icon.png",
+      "icon": "./src/assets/icons/notification-icon.png",
       "color": "#000000"
     },
     "loading": {
-      "icon": "./assets/icons/loading-icon.png",
+      "icon": "./src/assets/images/logo.png",
       "hideExponentText": false
     },
     "packagerOpts": {
-      "assetExts": ["ttf"]
+      "assetExts": ["ttf", "otf"]
     },
     "ios": {
       "supportsTablet": true
