@@ -13,32 +13,23 @@ import CreateAccountScreen from '../screens/CreateAccount/CreateAccountScreen';
 // Global Navigation Configuration
 // See: https://reactnavigation.org/docs/intro/
 // ==================================================================================
-const RootStackNavigator = StackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-    Login: {
-      screen: LoginScreen,
-    },
-    CreateAccount: {
-      screen: CreateAccountScreen,
-    },
-    StudentHome: {
-      screen: StudentHomeScreen,
-    },
-    TutorHome: {
-      screen: TutorHomeScreen,
-    },
+const RootStackNavigator = StackNavigator({
+  Home: {
+    screen: HomeScreen,
   },
-  {
-    navigationOptions: () => ({
-      headerTitleStyle: {
-        fontFamily: 'RobotoRegular',
-      },
-    }),
-  }
-);
+  Login: {
+    screen: LoginScreen,
+  },
+  CreateAccount: {
+    screen: CreateAccountScreen,
+  },
+  StudentHome: {
+    screen: StudentHomeScreen,
+  },
+  TutorHome: {
+    screen: TutorHomeScreen,
+  },
+});
 
 // ==================================================================================
 // RootNavigator Component defined to handle push notifications and render
