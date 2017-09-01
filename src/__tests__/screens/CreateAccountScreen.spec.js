@@ -1,15 +1,17 @@
+import 'react-native';
 import React from 'react';
-import HomeScreen from '../screens/Home/HomeScreen';
 import renderer from 'react-test-renderer';
 import { ApolloProvider } from 'react-apollo';
-import { mockApolloClient } from '../api/graphql/graphql-test-schema';
+import { mockApolloClient } from '../../api/graphql/graphql-test-schema';
+import CreateAccountScreen from '../../screens/CreateAccount/CreateAccountScreen';
 
-it('renders the Home Screen', () => {
+it('renders a Create Account Screen', () => {
   const navigation = {};
+  const user = {};
   const tree = renderer
     .create(
       <ApolloProvider client={mockApolloClient()}>
-        <HomeScreen navigation={navigation} />
+        <CreateAccountScreen navigation={navigation} user={user} />
       </ApolloProvider>
     )
     .toJSON();
