@@ -21,6 +21,7 @@ export default StyleSheet.create({
     backgroundColor: colors.primary,
     width: 250,
     justifyContent: 'center',
+    alignSelf: 'center',
     marginTop: 20,
   },
   createAccountButton: {

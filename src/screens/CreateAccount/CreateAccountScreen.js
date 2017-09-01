@@ -89,41 +89,43 @@ class CreateAccountScreen extends React.Component {
       return <AppLoading />;
     } else {
       return (
-        <ScrollView
-          contentContainerStyle={style.container}
-          keyboardShouldPersistTaps="always"
-          ref="scroll">
-          <Form
-            ref="registrationForm"
-            onChange={this._handleFormChange.bind(this)}
-            label="Create Account">
-            <InputField style={style.inputField} ref="firstName" label="Nombre" />
-            <InputField style={style.inputField} ref="lastName" label="Apellido" />
-            <InputField
-              style={style.inputField}
-              ref="email"
-              label="Email"
-              keyboardType="email-address"
-            />
-            <InputField
-              style={style.inputField}
-              ref="password"
-              label="Contraseña"
-              secureTextEntry={true}
-            />
-          </Form>
-          {this._checkAllFieldsAreValid() &&
-            <Button
-              rounded
-              block
-              style={style.submitButton}
-              onPress={this._createAccount.bind(this)}>
-              <Text>Crear Cuenta</Text>
-            </Button>}
-          <Text>
-            {JSON.stringify(this.state.formData)}
-          </Text>
-        </ScrollView>
+        <Content padder>
+          <ScrollView
+            contentContainerStyle={style.container}
+            keyboardShouldPersistTaps="always"
+            ref="scroll">
+            <Form
+              ref="registrationForm"
+              onChange={this._handleFormChange.bind(this)}
+              label="Create Account">
+              <InputField style={style.inputField} ref="firstName" label="Nombre" />
+              <InputField style={style.inputField} ref="lastName" label="Apellido" />
+              <InputField
+                style={style.inputField}
+                ref="email"
+                label="Email"
+                keyboardType="email-address"
+              />
+              <InputField
+                style={style.inputField}
+                ref="password"
+                label="Contraseña"
+                secureTextEntry={true}
+              />
+            </Form>
+            {this._checkAllFieldsAreValid() &&
+              <Button
+                rounded
+                block
+                style={style.submitButton}
+                onPress={this._createAccount.bind(this)}>
+                <Text>Crear Cuenta</Text>
+              </Button>}
+            <Text>
+              {/*{JSON.stringify(this.state.formData)}*/}
+            </Text>
+          </ScrollView>
+        </Content>
       );
     }
   }
