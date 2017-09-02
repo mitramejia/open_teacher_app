@@ -38,7 +38,6 @@ class TutorHomeScreen extends React.Component {
 }
 
 TutorHomeScreen.propTypes = {
-  client: React.PropTypes.object.isRequired,
   navigation: React.PropTypes.object.isRequired,
   user: React.PropTypes.object.isRequired,
 };

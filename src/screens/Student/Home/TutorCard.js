@@ -10,8 +10,8 @@
 import React from 'react';
 import { Container, Content, Card, Header, Form, Item, Input, Toast, Button, Icon } from 'native-base';
 import propTypes from 'prop-types';
-import strings from '../strings';
-import style from '../style';
+import strings from './strings';
+import style from './style';
 
 class TutorCard extends React.Component {
   // render(){
