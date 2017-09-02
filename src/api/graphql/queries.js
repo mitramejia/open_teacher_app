@@ -53,3 +53,18 @@ export const allSubjectsQuery = gql`
     }
   }
 `;
+
+export const currentUserAndAllSubjects = gql`
+  query {
+    user {
+      id
+      firstName
+      lastName
+      email
+    }
+    allSubjects {
+      id
+      name
+    }
+  }
+`;
