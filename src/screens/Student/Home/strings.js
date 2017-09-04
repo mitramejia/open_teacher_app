@@ -9,6 +9,6 @@
 // =============================================================
 
 export default {
-  subjectInputField: 'Qué materia deseas aprender?',
-  timeInputField: 'Cuándo estás disponible?',
+  subjectInputField: '¿Qué materia deseas aprender?',
+  timeInputField: '¿Cuándo estás disponible?',
 };
