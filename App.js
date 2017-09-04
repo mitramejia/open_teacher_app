@@ -1,10 +1,10 @@
 import React from 'react';
-import { AppLoading} from 'expo';
+import { AppLoading } from 'expo';
 import { Platform, StatusBar, View } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
 import { Container } from 'native-base';
 import client from './src/api/graphql/GraphcoolConnection';
-import { styles } from './src/config/style';
+import { common } from './src/config/style';
 import RootNavigator from './src/navigation/RootNavigation';
 import { loadAssets } from './src/assets/loadAssets';
 
@@ -26,7 +26,7 @@ export default class App extends React.Component {
       return (
         <Container>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
+          {Platform.OS === 'android' && <View style={common.statusBarUnderlay} />}
           <ApolloProvider client={client}>
             <RootNavigator />
           </ApolloProvider>
