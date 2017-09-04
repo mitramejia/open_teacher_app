@@ -12,23 +12,14 @@ import { StyleSheet } from 'react-native';
 import { colors } from '../../../config/style';
 
 export default StyleSheet.create({
-  container: {
-    backgroundColor: '#eeeeee',
-  },
   formContainer: {
     backgroundColor: colors.primary,
-    paddingBottom: 30,
-    paddingTop: 24,
-  },
-  inputField: {
-    borderRadius: 12,
-    paddingLeft: 24,
-    height: 72,
-    backgroundColor: colors.white,
-    borderColor: colors.secondary,
-    marginBottom: 24,
+    paddingTop: 44,
   },
   userIcon: {
     alignSelf: 'flex-end',
+    color: colors.secondary,
+    fontSize: 40,
+    marginBottom: 20,
   },
 });
