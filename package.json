@@ -17,6 +17,11 @@
       "js",
       "jsx"
     ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/utils/",
+      "/factories/"
+    ],
     "moduleDirectories": [
       "node_modules"
     ],
@@ -61,6 +66,7 @@
     "react-devtools-core": "^2.5.0",
     "react-dom": "^16.0.0-beta.5",
     "react-native-dotenv": "^0.1.0",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "react-test-renderer": "16.0.0-alpha.12",
+    "rosie": "^1.6.0"
   }
 }
