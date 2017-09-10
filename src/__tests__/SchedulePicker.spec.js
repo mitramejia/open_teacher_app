@@ -1,16 +1,15 @@
-import SchedulePicker from '../screens/Student/Home/Form/SchedulePicker';
+import SchedulePicker from '../screens/Student/SearchTutor/Form/SchedulePicker';
 import 'react-native';
 import React from 'react';
-import renderer from 'react-test-renderer';
 import settings from '../config/settings';
-import { shallowRenderer } from './testHelper';
+import { renderShallow } from '../api/testHelper';
 
 describe('Renders a Schedule Picker', () => {
-  let subject = shallowRenderer(<SchedulePicker />);
+  let subject;
 
-  // beforeEach(() => {
-  //   subject = shallowRenderer(<SchedulePicker />);
-  // });
+  beforeEach(() => {
+    subject = renderShallow(<SchedulePicker />);
+  });
 
   it('Renders a Shedule Picker', () => {
     expect(subject).toMatchSnapshot();

@@ -8,7 +8,7 @@
 //
 // =============================================================
 import React from 'react';
-import { ShallowRenderer } from 'react-test-renderer/shallow';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 export function renderShallow(component) {
   const renderer = new ShallowRenderer();

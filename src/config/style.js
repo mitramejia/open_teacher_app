@@ -48,5 +48,5 @@ export default StyleSheet.create({
   },
   checkBoxContainer: {
     height: 50,
-  }
+  },
 });

@@ -41,7 +41,7 @@ import local from './Form/style';
 import strings from './Form/strings';
 import common from '../../../config/style';
 import SchedulePicker from './Form/SchedulePicker';
-import SearchTutorForm from "./Form/SearchTutorForm";
+import SearchTutorForm from './Form/SearchTutorForm';
 
 class StudentHomeScreen extends React.Component {
   constructor(props) {
