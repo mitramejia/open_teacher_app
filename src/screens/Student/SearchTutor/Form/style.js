@@ -9,7 +9,7 @@
 // =============================================================
 
 import { StyleSheet } from 'react-native';
-import { colors } from '../../../config/style';
+import { colors } from '../../../../config/style';
 
 export default StyleSheet.create({
   formContainer: {

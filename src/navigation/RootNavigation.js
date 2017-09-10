@@ -3,7 +3,7 @@ import { Notifications } from 'expo';
 import { Root } from 'native-base';
 import { StackNavigator } from 'react-navigation';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
-import StudentHomeScreen from '../screens/Student/Home/StudentHomeScreen';
+import SearchTutorScreen from '../screens/Student/SearchTutor/SearchTutorScreen';
 import TutorHomeScreen from '../screens/Tutor/Home/TutorHomeScreen';
 import LoginScreen from '../screens/Login/LoginScreen';
 import HomeScreen from '../screens/Home/HomeScreen';
@@ -24,7 +24,7 @@ const RootStackNavigator = StackNavigator({
     screen: CreateAccountScreen,
   },
   StudentHome: {
-    screen: StudentHomeScreen,
+    screen: SearchTutorScreen,
   },
   TutorHome: {
     screen: TutorHomeScreen,

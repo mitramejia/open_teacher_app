@@ -1,9 +1,9 @@
 // =============================================================
 //
 // Name: SearchResults
-// -> Description: 
+// -> Description:
 //
-// Author: mitramejia 
+// Author: mitramejia
 // Created at: 8/28/17
 //
 // =============================================================

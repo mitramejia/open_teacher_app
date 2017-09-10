@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "app",
+    "name": "Open Teacher",
     "description": "No description",
     "slug": "app",
     "privacy": "public",
@@ -8,6 +8,12 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#5090CD",
+    "androidStatusBar": {
+      "backgroundColor": "#FAFCFF"
+    },
+    "iosStatusBar": {
+      "backgroundColor": "#FAFCFF"
+    },
     "icon": "./src/assets/icons/app-icon.png",
     "facebookScheme":"fb1725290091110977",
     "notification": {

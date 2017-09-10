@@ -65,8 +65,8 @@ exports[`renders a Student Home Screen 1`] = `
         style={
           Array [
             Object {
-              "color": "#5090CD",
-              "fontSize": 44,
+              "color": undefined,
+              "fontSize": 12,
             },
             Array [
               Object {
@@ -79,6 +79,8 @@ exports[`renders a Student Home Screen 1`] = `
               },
               Object {
                 "alignSelf": "flex-end",
+                "color": "#5090CD",
+                "fontSize": 40,
               },
             ],
             Object {
@@ -156,6 +158,10 @@ exports[`renders a Student Home Screen 1`] = `
                 "borderTopWidth": 1,
                 "flexDirection": "row",
                 "height": 72,
+                "icon": Object {
+                  "color": "#5090CD",
+                  "fontSize": 28,
+                },
                 "marginBottom": 24,
                 "marginLeft": 2,
                 "opacity": 1,
@@ -173,7 +179,7 @@ exports[`renders a Student Home Screen 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#5090CD",
+                    "color": undefined,
                     "fontSize": 44,
                   },
                   Array [
@@ -186,6 +192,10 @@ exports[`renders a Student Home Screen 1`] = `
                       "fontSize": 24,
                       "paddingLeft": 10,
                       "paddingRight": 8,
+                    },
+                    Object {
+                      "color": "#5090CD",
+                      "fontSize": 28,
                     },
                   ],
                   Object {
@@ -227,6 +237,7 @@ exports[`renders a Student Home Screen 1`] = `
                     "borderRadius": 5,
                     "borderRightWidth": null,
                     "borderTopWidth": null,
+                    "color": "#617382",
                     "elevation": 0,
                     "flexDirection": "row",
                     "height": 45,
@@ -803,6 +814,10 @@ exports[`renders a Student Home Screen 1`] = `
             "borderTopWidth": 1,
             "flexDirection": "row",
             "height": 72,
+            "icon": Object {
+              "color": "#5090CD",
+              "fontSize": 28,
+            },
             "marginBottom": 24,
             "marginLeft": 0,
             "opacity": 1,
@@ -820,8 +835,8 @@ exports[`renders a Student Home Screen 1`] = `
           style={
             Array [
               Object {
-                "color": "#5090CD",
-                "fontSize": 28,
+                "color": undefined,
+                "fontSize": 12,
               },
               Array [
                 Object {
@@ -833,6 +848,10 @@ exports[`renders a Student Home Screen 1`] = `
                   "fontSize": 24,
                   "paddingLeft": 10,
                   "paddingRight": 8,
+                },
+                Object {
+                  "color": "#5090CD",
+                  "fontSize": 28,
                 },
               ],
               Object {
@@ -848,7 +867,7 @@ exports[`renders a Student Home Screen 1`] = `
         </Text>
         <TextInput
           editable={true}
-          placeholder="Cuándo estás disponible?"
+          placeholder="¿Cuándo estás disponible?"
           placeholderTextColor="#575757"
           style={
             Object {

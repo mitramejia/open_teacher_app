@@ -1,17 +1,28 @@
 // =============================================================
 //
 // Name: TutorCard
-// -> Description: 
+// -> Description:
 //
-// Author: mitramejia 
+// Author: mitramejia
 // Created at: 8/28/17
 //
 // =============================================================\\
 import React from 'react';
-import { Container, Content, Card, Header, Form, Item, Input, Toast, Button, Icon } from 'native-base';
+import {
+  Container,
+  Content,
+  Card,
+  Header,
+  Form,
+  Item,
+  Input,
+  Toast,
+  Button,
+  Icon,
+} from 'native-base';
 import propTypes from 'prop-types';
-import strings from './strings';
-import style from './style';
+import strings from '../Form/strings';
+import style from '../Form/style';
 
 class TutorCard extends React.Component {
   // render(){

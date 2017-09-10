@@ -17,9 +17,9 @@ export async function loadAssets(ref) {
     await Promise.all([
       Asset.loadAsync([images.logo, images.appIcon, images.loadingIcon, images.notificationIcon]),
       Font.loadAsync({
-        'Roboto': require('native-base/Fonts/Roboto.ttf'),
-        'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-        'Ionicons': require('@expo/vector-icons/fonts/Ionicons.ttf'),
+        Roboto: require('native-base/Fonts/Roboto.ttf'),
+        Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+        Ionicons: require('@expo/vector-icons/fonts/Ionicons.ttf'),
       }),
     ]);
   } catch (error) {
