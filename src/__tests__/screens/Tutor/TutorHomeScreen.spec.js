@@ -1,8 +1,8 @@
 import React from 'react';
-import TutorHomeScreen from '../../screens/Tutor/Home/TutorHomeScreen';
+import TutorHomeScreen from '../../../screens/Tutor/Home/TutorHomeScreen';
 import renderer from 'react-test-renderer';
 import { ApolloProvider } from 'react-apollo';
-import { mockApolloClient } from '../../api/graphql/graphql-test-schema';
+import { mockApolloClient } from '../../../api/graphql/graphql-test-schema';
 
 it('renders the Home Screen', () => {
   const navigation = {};

@@ -1,8 +1,7 @@
-import SchedulePicker from '../screens/Student/SearchTutor/Form/SchedulePicker';
 import 'react-native';
 import React from 'react';
-import settings from '../config/settings';
-import { renderShallow } from '../api/testHelper';
+import SchedulePicker from '../../../screens/Student/SearchTutor/Form/SchedulePicker';
+import { renderShallow } from '../../utils/testHelper';
 
 describe('Renders a Schedule Picker', () => {
   let subject;
