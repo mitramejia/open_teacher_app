@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a Search Tutor Screen 1`] = `
+exports[`SearchTutorScreen renders a Search Tutor Screen 1`] = `
 <RCTScrollView
   automaticallyAdjustContentInsets={false}
   contentInset={
@@ -462,20 +462,25 @@ exports[`renders a Search Tutor Screen 1`] = `
                         dataArray={
                           Array [
                             <Styled(Item)
-                              label={undefined}
-                              value={undefined}
+                              label={1}
+                              value={1}
                               virtual={undefined}
                           />,
                             <Styled(Item)
-                              label={undefined}
-                              value={undefined}
+                              label={2}
+                              value={2}
+                              virtual={undefined}
+                          />,
+                            <Styled(Item)
+                              label="build"
+                              value="build"
                               virtual={undefined}
                           />,
                           ]
                         }
                         dataSource={
                           ListViewDataSource {
-                            "items": 2,
+                            "items": 3,
                           }
                         }
                         directionalDistanceChangeThreshold={2}
@@ -554,7 +559,9 @@ exports[`renders a Search Tutor Screen 1`] = `
                                 }
                                 uppercase={false}
                                 virtual={undefined}
-                              />
+                              >
+                                1
+                              </Text>
                               <View
                                 style={
                                   Object {
@@ -658,7 +665,115 @@ exports[`renders a Search Tutor Screen 1`] = `
                                 }
                                 uppercase={false}
                                 virtual={undefined}
-                              />
+                              >
+                                2
+                              </Text>
+                              <View
+                                style={
+                                  Object {
+                                    "alignItems": "flex-end",
+                                    "alignSelf": "center",
+                                    "flex": 0.28,
+                                    "paddingBottom": null,
+                                    "paddingLeft": null,
+                                    "paddingRight": null,
+                                    "paddingTop": null,
+                                  }
+                                }
+                                virtual={undefined}
+                              >
+                                <View
+                                  accessibilityComponentType={undefined}
+                                  accessibilityLabel={undefined}
+                                  accessibilityTraits={undefined}
+                                  accessible={true}
+                                  collapsable={undefined}
+                                  hitSlop={undefined}
+                                  isTVSelectable={true}
+                                  nativeID={undefined}
+                                  onLayout={undefined}
+                                  onResponderGrant={[Function]}
+                                  onResponderMove={[Function]}
+                                  onResponderRelease={[Function]}
+                                  onResponderTerminate={[Function]}
+                                  onResponderTerminationRequest={[Function]}
+                                  onStartShouldSetResponder={[Function]}
+                                  style={
+                                    Object {
+                                      "alignSelf": null,
+                                      "opacity": 1,
+                                    }
+                                  }
+                                  testID={undefined}
+                                  tvParallaxProperties={undefined}
+                                />
+                              </View>
+                            </View>
+                          </View>
+                          <View
+                            accessibilityComponentType={undefined}
+                            accessibilityLabel={undefined}
+                            accessibilityTraits={undefined}
+                            accessible={true}
+                            hasTVPreferredFocus={undefined}
+                            hitSlop={undefined}
+                            isTVSelectable={true}
+                            nativeID={undefined}
+                            onLayout={undefined}
+                            onResponderGrant={[Function]}
+                            onResponderMove={[Function]}
+                            onResponderRelease={[Function]}
+                            onResponderTerminate={[Function]}
+                            onResponderTerminationRequest={[Function]}
+                            onStartShouldSetResponder={[Function]}
+                            style={
+                              Array [
+                                Object {
+                                  "backgroundColor": "transparent",
+                                },
+                                undefined,
+                              ]
+                            }
+                            testID={undefined}
+                            tvParallaxProperties={undefined}
+                          >
+                            <View
+                              button={true}
+                              onPress={[Function]}
+                              selected={false}
+                              style={
+                                Object {
+                                  "alignItems": "center",
+                                  "backgroundColor": undefined,
+                                  "borderBottomWidth": 0.5,
+                                  "borderColor": "#c9c9c9",
+                                  "flexDirection": "row",
+                                  "marginLeft": 15,
+                                  "paddingBottom": 13,
+                                  "paddingRight": 15,
+                                  "paddingTop": 13,
+                                }
+                              }
+                              virtual={undefined}
+                            >
+                              <Text
+                                accessible={true}
+                                allowFontScaling={true}
+                                disabled={false}
+                                ellipsizeMode="tail"
+                                style={
+                                  Object {
+                                    "alignSelf": "center",
+                                    "color": "#000",
+                                    "fontFamily": "System",
+                                    "fontSize": 16,
+                                  }
+                                }
+                                uppercase={false}
+                                virtual={undefined}
+                              >
+                                build
+                              </Text>
                               <View
                                 style={
                                   Object {
