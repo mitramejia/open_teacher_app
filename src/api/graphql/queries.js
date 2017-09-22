@@ -68,3 +68,45 @@ export const currentUserAndAllSubjects = gql`
     }
   }
 `;
+
+export const allTutors = gql`
+  query {
+    allTutors {
+      user {
+        id
+        firstName
+        lastName
+        email
+      }
+      rate
+      rating
+      description
+    }
+  }
+`;
+
+export const StudentHomeScreenData = gql`
+  query {
+    user {
+      id
+      firstName
+      lastName
+      email
+    }
+    allSubjects {
+      id
+      name
+    }
+    allTutors {
+      user {
+        id
+        firstName
+        lastName
+        email
+      }
+      rate
+      rating
+      description
+    }
+  }
+`;
