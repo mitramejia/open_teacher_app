@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import SearchTutorScreen from '../Student/SearchTutor/SearchTutorScreen';
 import LoginScreen from '../Login/LoginScreen';
 import TutorHomeScreen from '../Tutor/Home/TutorHomeScreen';
-import { currentUserAndAllSubjects } from '../../api/graphql/queries';
+import { StudentHomeScreenData } from '../../api/graphql/queries';
 
 export class HomeScreen extends React.Component {
   state = {
@@ -23,26 +23,19 @@ export class HomeScreen extends React.Component {
     this.props.client.resetStore();
   };
 
-  _userIsLoggedIn = () => {
-    return this.props.data.user;
-  };
-
-  _userIsTutor = () => {
-    return this.props.data.user.isTutor;
-  };
-
   render() {
     if (this.props.data.loading && !this.props.skipLoadingScreen) {
       return <AppLoading />;
     } else {
-      if (this._userIsLoggedIn()) {
-        if (this._userIsTutor()) {
+      if (this.props.data.user) {
+        if (this.props.data.user.isTutor) {
           return <TutorHomeScreen user={this.props.data.user} navigation={this.props.navigation} />;
         } else {
           return (
             <SearchTutorScreen
               user={this.props.data.user}
-              data={this.props.data.allSubjects}
+              subjects={this.props.data.allSubjects}
+              tutors={this.props.data.allTutors}
               navigation={this.props.navigation}
             />
           );
@@ -61,6 +54,6 @@ HomeScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-export default graphql(currentUserAndAllSubjects, { options: { fetchPolicy: 'network-only' } })(
+export default graphql(StudentHomeScreenData, { options: { fetchPolicy: 'network-only' } })(
   HomeScreen
 );
