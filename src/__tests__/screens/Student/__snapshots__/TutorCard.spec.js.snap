@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Search Tutor Screen 1`] = `
+<RCTScrollView
+  automaticallyAdjustContentInsets={false}
+  contentInset={
+    Object {
+      "bottom": 0,
+    }
+  }
+  enableAutoAutomaticScroll={true}
+  enableResetScrollToCoords={true}
+  extraHeight={75}
+  extraScrollHeight={0}
+  keyboardDismissMode="interactive"
+  keyboardOpeningTime={250}
+  onScroll={[Function]}
+  resetScrollToCoords={
+    Object {
+      "x": 0,
+      "y": 0,
+    }
+  }
+  scrollEventThrottle={0}
+  showsVerticalScrollIndicator={true}
+  style={
+    Object {
+      "backgroundColor": "transparent",
+      "flex": 1,
+    }
+  }
+  virtual={undefined}
+>
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          undefined,
+        ]
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <View
+        avatar={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": undefined,
+            "borderBottomWidth": null,
+            "borderColor": "#c9c9c9",
+            "flexDirection": "row",
+            "marginLeft": 15,
+            "paddingBottom": null,
+            "paddingRight": null,
+            "paddingTop": null,
+          }
+        }
+        virtual={undefined}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": null,
+              "alignSelf": null,
+              "borderBottomWidth": 0.5,
+              "borderColor": "#c9c9c9",
+              "flex": 1,
+              "marginLeft": 15,
+              "paddingBottom": 10,
+              "paddingTop": 10,
+            }
+          }
+          virtual={undefined}
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#000",
+                "fontFamily": "System",
+                "fontSize": 16,
+                "marginLeft": null,
+                "marginRight": 10,
+              }
+            }
+            uppercase={false}
+            virtual={undefined}
+          >
+            Test
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            note={true}
+            style={
+              Object {
+                "color": "#808080",
+                "fontFamily": "System",
+                "fontSize": 14,
+                "fontWeight": "200",
+                "marginLeft": null,
+                "marginRight": 10,
+              }
+            }
+            uppercase={false}
+            virtual={undefined}
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;

@@ -96,6 +96,9 @@ export const StudentHomeScreenData = gql`
     allSubjects {
       id
       name
+      tutors {
+        id
+      }
     }
     allTutors {
       user {
@@ -107,6 +110,24 @@ export const StudentHomeScreenData = gql`
       rate
       rating
       description
+    }
+  }
+`;
+
+export const getTutors = gql`
+  query($subject: String) {
+    allTutors {
+      user {
+        id
+        firstName
+        lastName
+        email
+      }
+      subjects(id: $subject)
+      rate
+      rating
+      description
+      schedule
     }
   }
 `;

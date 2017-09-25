@@ -27,17 +27,13 @@ import {
   Title,
   View,
 } from 'native-base';
-import { Modal, StyleSheet } from 'react-native';
+import { Modal } from 'react-native';
 import settings from '../../../../config/settings';
 import strings from './strings';
 import common from '../../../../config/style';
 import TimeCheckBox from './TimeCheckBox';
 
 class SchedulePicker extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   _handleSubmit() {}
 
   _renderCheckBoxColumn(section) {

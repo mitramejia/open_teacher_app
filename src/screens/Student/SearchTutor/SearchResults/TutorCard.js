@@ -19,28 +19,45 @@ import {
   Toast,
   Button,
   Icon,
+  Body,
+  Text,
+  ListItem,
+  Thumbnail,
+  Right,
 } from 'native-base';
-import propTypes from 'prop-types';
+import { StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import strings from '../Form/strings';
-import style from '../Form/style';
+// import style from '../Form/style';
 
 class TutorCard extends React.Component {
-  // render(){
-  //   return (
-  //     <Content>
-  //     <Card>
-  //       <CardItem header>
-  //         <Text>NativeBase</Text>
-  //       </CardItem>
-  //       <CardItem>
-  //         <Body>
-  //         <Text>
-  //
-  //         </Text>
-  //         </Body>
-  //       </CardItem>
-  //     </Card>
-  //   </Content>
-  // );
-  // }
+  render() {
+    const { user, job, rate, rating } = this.props.tutor;
+    return (
+      <Content>
+        <ListItem avatar>
+          <Body>
+            <Text>
+              {user.firstName} {user.lastName}
+            </Text>
+            <Text>
+              rate: {rate}
+            </Text>
+            <Text>
+              rating: {rating}
+            </Text>
+            <Text>
+              job: {job}
+            </Text>
+          </Body>
+        </ListItem>
+      </Content>
+    );
+  }
 }
+
+TutorCard.PropTypes = {
+  tutors: PropTypes.object.isRequired,
+};
+
+export default TutorCard;

@@ -10,20 +10,17 @@
 
 import { Factory } from 'rosie';
 import Faker from 'faker';
-import * as _ from 'lodash';
-import { getRandomInt } from '../../api/utils';
 
-export const User = new Factory().sequence('id').attr({
-  email: Faker.internet.email(),
-  firstName: Faker.name.firstName(),
-  lastName: Faker.name.lastName(),
+Factory.define('user').sequence('id').attrs({
+  email: 'test@test.com',
+  firstName: 'Test',
+  lastName: 'User',
+  imageUrl: Faker.image.imageUrl(),
 });
 
-export const Subject = new Factory().sequence('name').attr({
-  name: 'Materia',
+Factory.define('tutor').sequence('id').attrs({
+  rating: 500,
+  rate: 5,
 });
 
-export function generate(size, factory) {
-  const amount = getRandomInt(1, size);
-  return _.fill(new Array(amount), factory.build());
-}
+export default Factory;
